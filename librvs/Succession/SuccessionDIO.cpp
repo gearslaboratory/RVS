@@ -1,4 +1,5 @@
 #include "SuccessionDIO.h"
+#include <algorithm>
 
 RVS::Succession::SuccessionDIO::SuccessionDIO(void) : RVS::DataManagement::DIO()
 {

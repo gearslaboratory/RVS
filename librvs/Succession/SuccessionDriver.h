@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <list>
+#include <cmath>
 
 #include "SuccessionDIO.h"
 #include "../DataManagement/AnalysisPlot.h"

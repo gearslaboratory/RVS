@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <string>
 extern int* RC;
 extern int* YEARS;
 extern std::string* CLIMATE;
