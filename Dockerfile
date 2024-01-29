@@ -8,9 +8,9 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 
 RUN git clone https://github.com/gearslaboratory/RVS.git
-RUN cd RVS/librvs && make
+RUN cd RVS/newlib
 
-ENV PATH="/app/RVS/librvs/build:$PATH"
+ENV PATH="/app/RVS/newlib/build:$PATH"
 
 
 
