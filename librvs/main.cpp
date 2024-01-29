@@ -38,7 +38,7 @@ const char* DEBUG_FILE = "RVS_Debug.txt";
 string* CLIMATE = new string("Normal");
 bool* USE_MEM = new bool(true);
 bool* RANDOM_CLIMATE = new bool(false);
-char* RVS_DB_PATH = "C:/Users/robbl/Documents/GitHub/RVS/rvs_in.db";
+char* RVS_DB_PATH = "";
 char* OUT_DB_PATH = "";
 
 // Define runmode
@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
 	}
 	else
 	{
-		OUT_DB_PATH = "C:/Users/robbl/Documents/GitHub/RVS/rvs_out_c.db";
+		OUT_DB_PATH = "rvs_out.db";
 	}
 	
 
@@ -316,7 +316,7 @@ void shrubEquationTest()
 	Biomass::BiomassEqDriver beqd = Biomass::BiomassEqDriver(bdio, *SUPPRESS_MSG);
 	vector<int> testEquations = vector<int>();
 	ifstream equationsFile;
-	equationsFile.open("C:\\Users\\robblankston\\Documents\\GitHub\\RVS\\librvs\\biomass_text_equations.txt");
+	equationsFile.open("./biomass_text_equations.txt");
 	string line;
 	if (equationsFile.is_open())
 	{
