@@ -1,0 +1,17 @@
+#Navigate the RVS directory where the dockerfile is 
+
+#Build your docker image 
+docker build -t rvs-image-2024 .
+
+
+
+#Run dockerized RVS with db folder mounted to local container folder - ls in data folder 
+docker run -v "C:/Users/ingli/OneDrive - University of Nevada, Reno/Desktop/unr/git/RVS/test/":"/data" rvs-image-2024 ls /data
+
+
+#This didn't work bc not set up to input init text file yet
+docker run -v "C:/Users/ingli/OneDrive - University of Nevada, Reno/Desktop/unr/git/RVS/test":"/data" rvs-image-2024 rvs /data/rvs_init_test.txt
+
+
+#Use this command to run RVS in the docker image 
+docker run -v "C:/Users/ingli/OneDrive - University of Nevada, Reno/Desktop/unr/git/RVS/test":"/data" rvs-image-2024 rvs /data/rvs_demo_fromRobbAddFieldTypeMissing.db /data/out.db 100
