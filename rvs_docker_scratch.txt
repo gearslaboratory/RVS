@@ -14,4 +14,10 @@ docker run -v "C:/Users/ingli/OneDrive - University of Nevada, Reno/Desktop/unr/
 
 
 #Use this command to run RVS in the docker image 
+docker run -v "C:/Users/ingli/OneDrive - University of Nevada, Reno/Desktop/unr/git/RVS/240226_test":"/data" rvs-image-2024 rvs /data/240304_landfire_plots_only_200.db /data/out.db 100
+
+
+
+
+
 docker run -v "C:/Users/ingli/OneDrive - University of Nevada, Reno/Desktop/unr/git/RVS/test":"/data" rvs-image-2024 rvs /data/rvs_demo_fromRobbAddFieldTypeMissing.db /data/out.db 100
