@@ -42,7 +42,8 @@ int* SuccessionDriver::SuccessionMain(int year, string* climate, RVS::DataManage
 	
 	*yhat = calcProduction(year);
 	calcConfidence(year, *yhat, lower, upper, 0);
-	production = exp(*yhat) * SMEAR;
+	// production = exp(*yhat) * SMEAR;
+	production = 0;
 	
 	ap->primaryProduction = production;
 	ap->lower_confidence = *lower;
