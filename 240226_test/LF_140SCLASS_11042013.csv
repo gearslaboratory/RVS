@@ -1,0 +1,17 @@
+Value,Label,Description,R,G,B,Red,Green,Blue
+-9999,NODATA,NODATA,0,0,0,0.0000000,0.0000000,0.0000000
+1,A,Succession Class A,161,99,51,0.6313730,0.3882350,0.2000000
+2,B,Succession Class B,56,168,0,0.2196080,0.6588240,0.0000000
+3,C,Succession Class C,201,222,171,0.7882350,0.8705880,0.6705880
+4,D,Succession Class D,255,248,166,1.0000000,0.9725490,0.6509800
+5,E,Succession Class E,0,74,77,0.0000000,0.2901960,0.3019610
+6,UN,Uncharacteristic Native Vegetation Cover / Structure / Composition,160,0,0,0.6274510,0.0000000,0.0000000
+7,UE,Uncharacteristic Exotic Vegetation,255,0,0,1.0000000,0.0000000,0.0000000
+111,Water,Water,0,0,255,0.0000000,0.0000000,1.0000000
+112,Snow / Ice,Snow / Ice,200,255,255,0.7843140,1.0000000,1.0000000
+120,Non-burnable Urban,Non-burnable Urban,132,0,168,0.5176470,0.0000000,0.6588240
+121,Burnable Urban,Burnable Urban,232,190,255,0.9098040,0.7450980,1.0000000
+131,Barren,Barren,78,78,78,0.3058820,0.3058820,0.3058820
+132,Sparsely Vegetated,Sparsely Vegetated,178,178,178,0.6980390,0.6980390,0.6980390
+180,Non-burnable Agriculture,Non-burnable Agriculture,255,255,0,1.0000000,1.0000000,0.0000000
+181,Burnable Agriculture,Burnable Agriculture,255,170,0,1.0000000,0.6666670,0.0000000

@@ -87,6 +87,13 @@ int main(int argc, char* argv[])
 		OUT_DB_PATH = argv[2];
 		*YEARS = atoi(argv[3]);
 	}
+	else if (argc == 5) // New condition to handle the additional argument
+    {
+        RVS_DB_PATH = argv[1];
+        OUT_DB_PATH = argv[2];
+        *YEARS = atoi(argv[3]);
+        *RANDOM_CLIMATE = (strcmp(argv[4], "true") == 0 || strcmp(argv[4], "1") == 0); // Set RANDOM_CLIMATE based on the new argument
+    }
 	else
 	{
 		OUT_DB_PATH = "rvs_out.db";
