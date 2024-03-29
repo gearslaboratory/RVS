@@ -428,7 +428,8 @@ double SuccessionDriver::calcProduction(int year)
 	ln_ndvi = log(ndvi);
 	ln_ppt = log(ppt);
 
-	double biomass = -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
+	// double biomass = -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
+	double biomass = 0;
 	return biomass;
 }
 
