@@ -419,7 +419,7 @@ double SuccessionDriver::calcProduction(int year)
 	double ln_ppt = log(ppt);
 
 	//double rawProduction = -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
-	double rawProduction = 0
+	double rawProduction = 0;
 	ap->rawProduction = exp(rawProduction) * SMEAR;
 
 	// Modify NDVI and PPT as a function of NOT SHRUB cover
