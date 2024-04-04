@@ -110,6 +110,8 @@ namespace DataManagement
 		double getNDVI(string level, bool useRand);
 		// Get precipitation for the requested level
 		double getPPT(string level, bool useRand);
+		// Get NPP for the requested level
+		double getNPP(string level, bool useRand);
 
 		std::vector<RVS::Disturbance::DisturbAction> getDisturbancesForYear(int year);
 		inline void setDisturbances(vector<RVS::Disturbance::DisturbAction> dists) { disturbances = dists; }
@@ -188,6 +190,7 @@ namespace DataManagement
 		std::vector<RVS::DataManagement::SppRecord*> shrubRecords;   // List of shrub records
 		std::vector<double> ndviValues;   // NDVI values for all years to be simulated
 		std::vector<double> precipValues; // PPT values for all years to be simulated
+		std::vector<double> nppValues; // NPP values for all years to be simulated
 
 		int currentStage = 0;
 		string currentStageType;

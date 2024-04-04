@@ -42,8 +42,8 @@ int* SuccessionDriver::SuccessionMain(int year, string* climate, RVS::DataManage
 	
 	*yhat = calcProduction(year);
 	calcConfidence(year, *yhat, lower, upper, 0);
-	// production = exp(*yhat) * SMEAR;
-	production = 0;
+	production = exp(*yhat) * SMEAR;
+	// production = 0;
 	
 	ap->primaryProduction = production;
 	ap->lower_confidence = *lower;
@@ -413,11 +413,13 @@ double SuccessionDriver::calcProduction(int year)
 {
 	double ndvi = ap->getNDVI(*climate, false);
 	double ppt = ap->getPPT(*climate, false);
+	double npp = ap->getNPP(*climate, false);
 
 	double ln_ndvi = log(ndvi);
 	double ln_ppt = log(ppt);
 
-	double rawProduction = -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
+	//double rawProduction = -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
+	double rawProduction = 0
 	ap->rawProduction = exp(rawProduction) * SMEAR;
 
 	// Modify NDVI and PPT as a function of NOT SHRUB cover

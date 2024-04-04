@@ -135,3 +135,4 @@ $RECYCLE.BIN/
 librvs/sqlite3.c
 librvs/sqlite3.h
 *.db
+*.tif

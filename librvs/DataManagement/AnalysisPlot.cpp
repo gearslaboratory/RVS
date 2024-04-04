@@ -21,6 +21,7 @@ AnalysisPlot::AnalysisPlot(RVS::DataManagement::DIO* dio, RVS::DataManagement::D
 	shrubRecords = vector<SppRecord*>();
 	ndviValues = vector<double>();
 	precipValues = vector<double>();
+	nppValues = vector<double>();
 	disturbances = vector<Disturbance::DisturbAction>();
 	disturbed = false;
 
@@ -57,6 +58,7 @@ void AnalysisPlot::buildAnalysisPlot(RVS::DataManagement::DIO* dio, RVS::DataMan
 	int colCount = sqlite3_column_count(stmt);
 	std::string ndvi = "NDVI";
 	std::string ppt = "PPT";
+	std::string npp = "NPP";
 
 	for (int i = 0; i < colCount; i++)
 	{
@@ -75,6 +77,10 @@ void AnalysisPlot::buildAnalysisPlot(RVS::DataManagement::DIO* dio, RVS::DataMan
 		else if (colStr.compare(0, ppt.length(), ppt) == 0)
 		{
 			precipValues.push_back(*aval);
+		}
+		else if (colStr.compare(0, npp.length(), npp) == 0)
+		{
+			nppValues.push_back(*aval);
 		}
 	}
 }
@@ -191,6 +197,44 @@ double AnalysisPlot::getPPT(string level, bool useRand)
 	}
 
 	return ppt;
+}
+
+double AnalysisPlot::getNPP(string level, bool useRand)
+{
+	double npp = 0;
+	if (level.compare("Dry") == 0)
+	{
+		npp = nppValues[0];
+	}
+	else if (level.compare("Mid-Dry") == 0)
+	{
+		npp = nppValues[1];
+	}
+	else if (level.compare("Mid-Wet") == 0)
+	{
+		npp = nppValues[3];
+	}
+	else if (level.compare("Wet") == 0)
+	{
+		npp = nppValues[4];
+	}
+	else if (level.compare("Normal") == 0)
+	{
+		npp = nppValues[2];
+	}
+	else
+	{
+		npp = nppValues[2];
+	}
+
+
+	if (useRand)
+	{
+		int r = rand() % 15 + 90;
+		npp = npp * (r / 100);
+	}
+
+	return npp;
 }
 
 vector<RVS::Disturbance::DisturbAction> RVS::DataManagement::AnalysisPlot::getDisturbancesForYear(int year)
