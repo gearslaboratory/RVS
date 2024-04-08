@@ -42,7 +42,8 @@ int* SuccessionDriver::SuccessionMain(int year, string* climate, RVS::DataManage
 	
 	*yhat = calcProduction(year);
 	calcConfidence(year, *yhat, lower, upper, 0);
-	production = exp(*yhat) * SMEAR;
+	production = yhat;
+	// production = exp(*yhat) * SMEAR;
 	// production = 0;
 	
 	ap->primaryProduction = production;
@@ -419,8 +420,8 @@ double SuccessionDriver::calcProduction(int year)
 	double ln_ppt = log(ppt);
 
 	//double rawProduction = -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
-	double rawProduction = 0;
-	ap->rawProduction = exp(rawProduction) * SMEAR;
+	double rawProduction = npp;
+	ap->rawProduction = rawProduction;
 
 	// Modify NDVI and PPT as a function of NOT SHRUB cover
 	double adjust = 1 - (ap->SHRUBCOVER() / 100);
@@ -428,10 +429,12 @@ double SuccessionDriver::calcProduction(int year)
 	ndvi = ndvi * adjust;
 	ppt = ppt * adjust;
 
+
 	ln_ndvi = log(ndvi);
 	ln_ppt = log(ppt);
 
-	double biomass = -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
+	// double biomass = -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
+	double biomass = npp;
 	// double biomass = 0;
 	return biomass;
 }
@@ -440,15 +443,18 @@ void SuccessionDriver::calcConfidence(int year, double biomass, double* lower, d
 {
 	double ndvi = ap->getNDVI(*climate, false);
 	double ppt = ap->getPPT(*climate, false);
+	double npp = ap->getNPP(*climate, false);
 
 	// Modify NDVI and PPT as a function of NOT SHRUB cover
 	double adjust = 1 - (ap->SHRUBCOVER() / 100);
 
 	ndvi = ndvi * adjust;
 	ppt = ppt * adjust;
+	npp = npp * adjust;
 
 	double ln_ndvi = log(ndvi);
 	double ln_ppt = log(ppt);
+	double ln_npp = log(npp);
 
 	// Begin confidence interval code
 
