@@ -81,10 +81,11 @@ void AnalysisPlot::buildAnalysisPlot(RVS::DataManagement::DIO* dio, RVS::DataMan
 		else if (colStr.compare(0, npp.length(), npp) == 0)
 		{
 			nppValues.push_back(*aval);
+			std::cout << "NPP Value: " << *aval << std::endl;
 		}
 	}
 }
-print(nppValues)
+
 
 void AnalysisPlot::push_shrub(RVS::DataManagement::DIO* dio, RVS::DataManagement::DataTable* dt)
 {
