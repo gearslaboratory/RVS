@@ -112,6 +112,7 @@ namespace DataManagement
 		double getPPT(string level, bool useRand);
 		// Get NPP for the requested level
 		double getNPP(string level, bool useRand);
+		void printNPPValues(const std::vector<double>& nppValues);
 
 		std::vector<RVS::Disturbance::DisturbAction> getDisturbancesForYear(int year);
 		inline void setDisturbances(vector<RVS::Disturbance::DisturbAction> dists) { disturbances = dists; }

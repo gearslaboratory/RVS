@@ -416,6 +416,8 @@ double SuccessionDriver::calcProduction(int year)
 	double ppt = ap->getPPT(*climate, false);
 	double npp = ap->getNPP(*climate, false);
 
+	
+
 	double ln_ndvi = log(ndvi);
 	double ln_ppt = log(ppt);
 
