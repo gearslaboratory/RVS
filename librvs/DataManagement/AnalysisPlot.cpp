@@ -85,7 +85,9 @@ void AnalysisPlot::buildAnalysisPlot(RVS::DataManagement::DIO* dio, RVS::DataMan
 			// std::cout << "NPP Value: " << *aval << std::endl;
 		}
 	}
+printNPPValues(nppValues);	
 }
+
 
 
 void AnalysisPlot::push_shrub(RVS::DataManagement::DIO* dio, RVS::DataManagement::DataTable* dt)
