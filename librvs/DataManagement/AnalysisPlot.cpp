@@ -81,6 +81,7 @@ void AnalysisPlot::buildAnalysisPlot(RVS::DataManagement::DIO* dio, RVS::DataMan
 		else if (colStr.compare(0, npp.length(), npp) == 0)
 		{
 			nppValues.push_back(*aval);
+			printNPPValues(nppValues):
 			// std::cout << "NPP Value: " << *aval << std::endl;
 		}
 	}
@@ -246,9 +247,6 @@ void printNPPValues(const std::vector<double>& nppValues) {
     }
     std::cout << std::endl;
 }
-
-printNPPValues(nppValues);
-
 
 vector<RVS::Disturbance::DisturbAction> RVS::DataManagement::AnalysisPlot::getDisturbancesForYear(int year)
 {
