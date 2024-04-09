@@ -239,6 +239,14 @@ double AnalysisPlot::getNPP(string level, bool useRand)
 	return npp;
 }
 
+void printNPPValues(const std::vector<double>& nppValues) {
+    std::cout << "NPP Values: ";
+    for (const auto& value : nppValues) {
+        std::cout << value << " ";
+    }
+    std::cout << std::endl;
+}
+
 vector<RVS::Disturbance::DisturbAction> RVS::DataManagement::AnalysisPlot::getDisturbancesForYear(int year)
 {
 	vector<Disturbance::DisturbAction> yearDisturbances = vector<Disturbance::DisturbAction>();
