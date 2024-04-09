@@ -247,6 +247,9 @@ void printNPPValues(const std::vector<double>& nppValues) {
     std::cout << std::endl;
 }
 
+printNPPValues(nppValues);
+
+
 vector<RVS::Disturbance::DisturbAction> RVS::DataManagement::AnalysisPlot::getDisturbancesForYear(int year)
 {
 	vector<Disturbance::DisturbAction> yearDisturbances = vector<Disturbance::DisturbAction>();
