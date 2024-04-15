@@ -56,6 +56,7 @@ namespace RVS
 	static const char* BPS_MODEL_FIELD = "BPS_MODEL";
 	static const char* LATITUDE_FIELD = "latitude";
 	static const char* LONGITUDE_FIELD = "longitude";
+	static const char* NPP_OUT_FIELD = "npp";
 
 
 	static const char* EQN_COEF_1_FIELD = "CF1";
