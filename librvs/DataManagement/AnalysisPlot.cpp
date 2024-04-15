@@ -85,7 +85,6 @@ void AnalysisPlot::buildAnalysisPlot(RVS::DataManagement::DIO* dio, RVS::DataMan
 			// std::cout << "NPP Value: " << *aval << std::endl;
 		}
 	}
-printNPPValues(nppValues);	
 }
 
 
@@ -232,22 +231,8 @@ double AnalysisPlot::getNPP(string level, bool useRand)
 		npp = nppValues[2];
 	}
 
-
-	if (useRand)
-	{
-		int r = rand() % 15 + 90;
-		npp = npp * (r / 100);
-	}
-
+	std::cout << "getNPP() called with level: " << level << " - Resulting NPP: " << npp << std::endl;
 	return npp;
-}
-
-void printNPPValues(const std::vector<double>& nppValues) {
-    std::cout << "NPP Values: ";
-    for (const auto& value : nppValues) {
-        std::cout << value << " ";
-    }
-    std::cout << std::endl;
 }
 
 vector<RVS::Disturbance::DisturbAction> RVS::DataManagement::AnalysisPlot::getDisturbancesForYear(int year)

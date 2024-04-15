@@ -1,4 +1,4 @@
-#include "BiomassDIO.h"
+#include "BiomassDIO.h"<< "NPP REAL, " << 
 
 RVS::Biomass::BiomassDIO::BiomassDIO(void) : RVS::DataManagement::DIO()
 {
