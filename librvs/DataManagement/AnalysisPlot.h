@@ -43,6 +43,7 @@ namespace DataManagement
 		inline const int BPS_NUM() { return bps_num; }
 		inline const string BPS_MODEL_NUM() { return bps_model_num; }
 		inline const string GRP_ID() { return grp_id; }
+		inline const int NPP() { return npp; }
 		inline const bool ISDRY() { return dryClimate; }
 
 		inline const double LOWER_BOUND() { return lower_confidence; }
@@ -127,6 +128,7 @@ namespace DataManagement
 		string bps_model_num;
 		int fallback_bps_num;
 		std::string grp_id;
+		double npp;
 		double latitude;
 		double longitude;
 
