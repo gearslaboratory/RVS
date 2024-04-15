@@ -49,7 +49,7 @@ int* SuccessionDriver::SuccessionMain(int year, string* climate, RVS::DataManage
 	ap->primaryProduction = production;
 	ap->lower_confidence = *lower;
 	ap->upper_confidence = *upper;
-	std::cout << "Production value from succession:" << production << std::endl;
+	
 	// Get the current succession stage. Values are 0-3, with 0 indicating not yet classified
 	// and -1 indicating uncharacteristic (unclassifiable) plot
 	int sclass = ap->CURRENT_SUCCESSION_STAGE();
@@ -438,6 +438,7 @@ double SuccessionDriver::calcProduction(int year)
 	// double biomass = -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
 	double biomass = npp;
 	// double biomass = 0;
+	std::cout << "Biomass value from succession:" << biomass << std::endl;
 	return biomass;
 }
 
