@@ -438,7 +438,6 @@ double SuccessionDriver::calcProduction(int year)
 	// double biomass = -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
 	double biomass = npp;
 	// double biomass = 0;
-	std::cout << "Biomass value from succession:" << biomass << std::endl;
 	return biomass;
 }
 
