@@ -231,7 +231,7 @@ double AnalysisPlot::getNPP(string level, bool useRand)
 		npp = nppValues[2];
 	}
 
-	std::cout << "getNPP() called with level: " << level << " - Resulting NPP: " << npp << std::endl;
+	// std::cout << "getNPP() called with level: " << level << " - Resulting NPP: " << npp << std::endl;
 	return npp;
 }
 

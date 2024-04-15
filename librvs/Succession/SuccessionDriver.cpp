@@ -49,7 +49,7 @@ int* SuccessionDriver::SuccessionMain(int year, string* climate, RVS::DataManage
 	ap->primaryProduction = production;
 	ap->lower_confidence = *lower;
 	ap->upper_confidence = *upper;
-	
+	std::cout << "Production value from succession:" << production << std::endl;
 	// Get the current succession stage. Values are 0-3, with 0 indicating not yet classified
 	// and -1 indicating uncharacteristic (unclassifiable) plot
 	int sclass = ap->CURRENT_SUCCESSION_STAGE();
