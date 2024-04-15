@@ -21,7 +21,8 @@ int* RVS::Biomass::BiomassDIO::create_output_table()
 		BPS_NUM_FIELD << " INTEGER NOT NULL, " << \
 		BPS_MODEL_FIELD << " TEXT, " << \
 		GROUP_ID_FIELD << " TEXT, " << \
-		"NDVI REAL, " << "PPT REAL, " << "NPP REAL, " << \
+		"NDVI REAL, " << "PPT REAL, " << \
+		NPP_OUT_FIELD << " REAL, " << \
 		BIOMASS_SHRUB_OUT_FIELD << " REAL, " << \
 		BIOMASS_HERB_OUT_FIELD << " REAL, " << \
 		BIOMASS_RAW_PRODUCTION_FIELD << " REAL," << \
@@ -57,7 +58,8 @@ int* RVS::Biomass::BiomassDIO::write_output_record(int* year, RVS::DataManagemen
 		BPS_NUM_FIELD << ", " << \
 		BPS_MODEL_FIELD << ", " << \
 		GROUP_ID_FIELD << ", " << \
-		"NDVI, PPT, NPP, " << \
+		"NDVI, PPT, " << \
+		NPP_OUT_FIELD << ", "<< \
 		BIOMASS_TOTAL_OUT_FIELD << ", "<< \
 		BIOMASS_SHRUB_OUT_FIELD << ", " << \
 		BIOMASS_HERB_OUT_FIELD << ", " << \
