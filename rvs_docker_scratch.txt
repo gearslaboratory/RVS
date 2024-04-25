@@ -7,7 +7,7 @@ docker build -t rvs-image-2024 .
 #Navigate the gigafire-rvs directory
 
 #Build your docker image 
-docker build -t rvs-image-2024-dev .
+docker build -t rvs-image-2024 .
 
 >>>>>>> dev
 
