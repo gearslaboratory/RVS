@@ -91,9 +91,11 @@ int* BiomassDriver::BioMain(int year, string* climate, RVS::DataManagement::Anal
 	ap->previousHerbProductions[1] = ap->previousHerbProductions[0];
 	ap->previousHerbProductions[0] = ap->primaryProduction;
 
-	std::cout << "aP PRIMARY prod " << ap->primaryProduction << std::endl;	
+		
 	//ap->herbBiomass = totalHerbBiomass + ap->herbHoldoverBiomass - ap->herbBiomassReduction;
 	ap->herbBiomass = ap->primaryProduction + ap->herbHoldoverBiomass;
+
+	std::cout << "herb biomass " << ap->herbBiomass << std::endl;
 	//ap->shrubBiomass = totalShrubBiomass - ap->shrubBiomassReduction;
 	ap->shrubBiomass = totalShrubBiomass;
 	ap->totalBiomass = ap->SHRUBBIOMASS() + ap->HERBBIOMASS();
