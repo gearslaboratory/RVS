@@ -84,7 +84,7 @@ int* BiomassDriver::BioMain(int year, string* climate, RVS::DataManagement::Anal
 	}
 
 	// Save output data
-
+	std::cout << "herb holdover " << ap->herbHoldoverBiomass << std::endl;
 
 	// Push new production to queue
 	ap->previousHerbProductions[2] = ap->previousHerbProductions[1];
@@ -99,7 +99,7 @@ int* BiomassDriver::BioMain(int year, string* climate, RVS::DataManagement::Anal
 	//ap->shrubBiomass = totalShrubBiomass - ap->shrubBiomassReduction;
 	ap->shrubBiomass = totalShrubBiomass;
 	ap->totalBiomass = ap->SHRUBBIOMASS() + ap->HERBBIOMASS();
-
+	
 	// Write output biomass record
 	RC = bdio->write_output_record(&year, ap);
 	

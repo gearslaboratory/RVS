@@ -111,7 +111,6 @@ int* RVS::Biomass::BiomassDIO::write_output_record(int* year, RVS::DataManagemen
 
 	std::cout << "total biomass in DIO " << ap->TOTALBIOMASS()<< std::endl;
 	return RC;
-	std::cout << "RC " << RC << std::endl;
 }
 
 int* RVS::Biomass::BiomassDIO::create_intermediate_table()
