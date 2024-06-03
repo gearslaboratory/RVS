@@ -99,7 +99,7 @@ int* BiomassDriver::BioMain(int year, string* climate, RVS::DataManagement::Anal
 	//ap->shrubBiomass = totalShrubBiomass - ap->shrubBiomassReduction;
 	ap->shrubBiomass = totalShrubBiomass;
 	ap->totalBiomass = ap->SHRUBBIOMASS() + ap->HERBBIOMASS();
-	std::cout << "total biomass " << ap->totalBiomass << std::endl;
+
 	// Write output biomass record
 	RC = bdio->write_output_record(&year, ap);
 	
