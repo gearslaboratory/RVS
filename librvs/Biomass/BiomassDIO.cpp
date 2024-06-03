@@ -109,6 +109,7 @@ int* RVS::Biomass::BiomassDIO::write_output_record(int* year, RVS::DataManagemen
 	sql = streamToCharPtr(&sqlstream);
 	queuedWrites.push_back(sql);
 
+	std::cout << "total biomass in DIO" << ap->TOTALBIOMASS()<< std::endl;
 	return RC;
 }
 
