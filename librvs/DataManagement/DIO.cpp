@@ -169,20 +169,22 @@ int* RVS::DataManagement::DIO::write_output(void)
         return RC;
     }
 
-    // Debug output: select and print
-    const std::string selectQuery = "SELECT * FROM BIOMASS_OUTPUT_TABLE";
-    sqlite3_stmt* stmt;
-    *RC = sqlite3_prepare_v2(outdb, selectQuery.c_str(), -1, &stmt, NULL);
-    if (*RC != SQLITE_OK) {
-        std::cerr << "Failed to prepare SELECT statement: " << sqlite3_errmsg(outdb) << std::endl;
-        return RC;
-    }
 
-    while (sqlite3_step(stmt) == SQLITE_ROW) {
-        double npp_out = sqlite3_column_double(stmt, 9);  // Replace INDEX_OF_NPP_OUT_FIELD with actual index
-        std::cout << "hb out value: " << npp_out << std::endl;
-    }
-    sqlite3_finalize(stmt);
+	std::string selectQuery = "SELECT * FROM BIOMASS_OUTPUT_TABLE WHERE PLOT_NUM_FIELD = ?";
+	sqlite3_stmt* stmt;
+	if (sqlite3_prepare_v2(outdb, selectQuery.c_str(), -1, &stmt, NULL) == SQLITE_OK) {
+		// Assuming you have a variable `plotNum` that holds the plot number you're interested in:
+		sqlite3_bind_int(stmt, 1, plotNum);  // Bind plot number to the SQL query
+		while (sqlite3_step(stmt) == SQLITE_ROW) {
+			double hb_out = sqlite3_column_double(stmt, 9); // Assuming index 9 is the index of herbbiomass
+			std::cout << "Inserted herbbiomass: " << hb_out << std::endl;
+		}
+		sqlite3_finalize(stmt);
+	} else {
+		std::cerr << "SQL prepare failed: " << sqlite3_errmsg(outdb) << std::endl;
+	}
+
+
     sqlite3_free(err);
 
     return RC;
