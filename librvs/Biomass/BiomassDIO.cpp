@@ -109,7 +109,7 @@ int* RVS::Biomass::BiomassDIO::write_output_record(int* year, RVS::DataManagemen
 	sql = streamToCharPtr(&sqlstream);
 	queuedWrites.push_back(sql);
 
-	std::cout << "herb biomass " << ap->ap->HERBBIOMASS() << std::endl;
+	std::cout << "herb biomass " << ap->HERBBIOMASS() << std::endl;
 	return RC;
 }
 
@@ -185,7 +185,7 @@ int* RVS::Biomass::BiomassDIO::write_intermediate_record(int* year, RVS::DataMan
 	char* sql = new char;
 	sql = streamToCharPtr(&sqlstream);
 	queuedWrites.push_back(sql);
-
+	std::cout << "herb biomass intermediate " << ap->HERBBIOMASS() << std::endl;
 	return RC;
 }
 
