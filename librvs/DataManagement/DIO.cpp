@@ -158,7 +158,7 @@ int* RVS::DataManagement::DIO::write_output(void)
 	*RC = sqlite3_exec(outdb, "END TRANSACTION", NULL, NULL, &err);
 	checkDBStatus(outdb, NULL, err);
 
-	std::string selectQuery = "SELECT * FROM BIOMASS_OUTPUT_TABLE WHERE PLOT_NUM_FIELD = " + std::to_string(ap->PLOT_ID()) + " AND YEAR_OUT_FIELD = " + std::to_string(*year);
+	std::string selectQuery = "SELECT * FROM BIOMASS_OUTPUT_TABLE WHERE PLOT_NUM_FIELD = ";
 	sqlite3_stmt* stmt;
 	sqlite3_prepare_v2(outdb, selectQuery.c_str(), -1, &stmt, NULL);
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
