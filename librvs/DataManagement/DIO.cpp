@@ -144,34 +144,48 @@ RVS::DataManagement::DataTable* RVS::DataManagement::DIO::prep_datatable(const c
 
 int* RVS::DataManagement::DIO::write_output(void)
 {
-	char* err = new char();
-	*RC = sqlite3_exec(outdb, "BEGIN TRANSACTION", NULL, NULL, &err);
+    char* err = nullptr;
+    *RC = sqlite3_exec(outdb, "BEGIN TRANSACTION", NULL, NULL, &err);
+    if (*RC != SQLITE_OK) {
+        std::cerr << "SQL Error: " << err << std::endl;
+        sqlite3_free(err);
+        return RC;
+    }
 
-	for (int w = 0; w < queuedWrites.size(); w++)
-	{
-		const char* sql = queuedWrites.at(w);
-		*RC = sqlite3_exec(outdb, sql, NULL, NULL, &err);
-		checkDBStatus(outdb, sql, err);
-		sqlite3_free(err);
-	}
+    for (const auto& sql : queuedWrites) {
+        *RC = sqlite3_exec(outdb, sql.c_str(), NULL, NULL, &err);
+        if (*RC != SQLITE_OK) {
+            std::cerr << "Failed to execute query: " << sql << "\nSQL Error: " << err << std::endl;
+            sqlite3_free(err);
+            sqlite3_exec(outdb, "ROLLBACK TRANSACTION", NULL, NULL, NULL);
+            return RC;
+        }
+    }
 
-	*RC = sqlite3_exec(outdb, "END TRANSACTION", NULL, NULL, &err);
-	checkDBStatus(outdb, NULL, err);
+    *RC = sqlite3_exec(outdb, "END TRANSACTION", NULL, NULL, &err);
+    if (*E != SQLITE_OK) {
+        std::cerr << "SQL Error on transaction end: " << err << std::endl;
+        sqlite3_free(err);
+        return RC;
+    }
 
-	std::string selectQuery = "SELECT * FROM BIOMASS_OUTPUT_TABLE WHERE PLOT_NUM_FIELD = ";
-	sqlite3_stmt* stmt;
-	sqlite3_prepare_v2(outdb, selectQuery.c_str(), -1, &stmt, NULL);
-	while (sqlite3_step(stmt) == SQLITE_ROW) {
-		double hb_out = sqlite3_column_double(stmt, 9); // Replace INDEX_OF_NPP_OUT_FIELD with actual index
-		std::cout << "Inserted herbbiomass: " << hb_out << std::endl;
-	}
-	sqlite3_finalize(stmt);
+    // Debug output: select and print
+    const std::string selectQuery = "SELECT * FROM BIOMASS_OUTPUT_TABLE";
+    sqlite3_stmt* stmt;
+    *RC = sqlite3_prepare_v2(outdb, selectQuery.c_str(), -1, &stmt, NULL);
+    if (*RC != SQLITE_OK) {
+        std::cerr << "Failed to prepare SELECT statement: " << sqlite3_errmsg(outdb) << std::endl;
+        return RC;
+    }
 
-	sqlite3_free(err);
+    while (sqlite3_step(stmt) == SQLITE_ROW) {
+        double npp_out = sqlite3_column_double(stmt, 9);  // Replace INDEX_OF_NPP_OUT_FIELD with actual index
+        std::cout << "hb out value: " << npp_out << std::endl;
+    }
+    sqlite3_finalize(stmt);
+    sqlite3_free(err);
 
-
-
-	return RC;
+    return RC;
 }
 
 void RVS::DataManagement::DIO::write_debug_msg(const char* msg)
