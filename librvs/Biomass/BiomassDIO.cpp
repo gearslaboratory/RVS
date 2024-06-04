@@ -20,10 +20,10 @@ int* RVS::Biomass::BiomassDIO::create_output_table()
 		YEAR_OUT_FIELD << " INTEGER NOT NULL, " << \
 		BPS_NUM_FIELD << " INTEGER NOT NULL, " << \
 		BPS_MODEL_FIELD << " TEXT, " << \
-		// GROUP_ID_FIELD << " TEXT, " << \
-		// "NDVI REAL, " << "PPT REAL, " << \
-		
-		NPP_OUT_FIELD << " REAL, " << \
+		GROUP_ID_FIELD << " TEXT, " << \
+		"NDVI REAL, " << "PPT REAL, " << \
+		//NPP_OUT_FIELD << " REAL, " << \
+
 		BIOMASS_SHRUB_OUT_FIELD << " REAL, " << \
 		BIOMASS_HERB_OUT_FIELD << " REAL, " << \
 		BIOMASS_RAW_PRODUCTION_FIELD << " REAL," << \
@@ -58,11 +58,12 @@ int* RVS::Biomass::BiomassDIO::write_output_record(int* year, RVS::DataManagemen
 		YEAR_OUT_FIELD << ", " << \
 		BPS_NUM_FIELD << ", " << \
 		BPS_MODEL_FIELD << ", " << \
-		//GROUP_ID_FIELD << ", " << \
+		GROUP_ID_FIELD << ", " << \
 		
-		//"NDVI, PPT, " << \
+		"NDVI, PPT, " << \
 		
-		NPP_OUT_FIELD << ", "<< \
+		//NPP_OUT_FIELD << ", "<< \
+
 		BIOMASS_TOTAL_OUT_FIELD << ", "<< \
 		BIOMASS_SHRUB_OUT_FIELD << ", " << \
 		BIOMASS_HERB_OUT_FIELD << ", " << \
@@ -86,13 +87,11 @@ int* RVS::Biomass::BiomassDIO::write_output_record(int* year, RVS::DataManagemen
 		*year << "," << \
 		ap->BPS_NUM() << ",\"" << \
 		ap->BPS_MODEL_NUM() << "\",\"" << \
-		//ap->GRP_ID() << "\"," << \
+		ap->GRP_ID() << "\"," << \
+		ap->getNDVI(*CLIMATE, false) << "," << \
+		ap->getPPT(*CLIMATE, false) << "," << \
+		// ap->getNPP(*CLIMATE, false) << "," << \
 		
-		// ap->getNDVI(*CLIMATE, false) << "," << \
-
-		// ap->getPPT(*CLIMATE, false) << "," << \
-
-		ap->getNPP(*CLIMATE, false) << "," << \
 		ap->TOTALBIOMASS() << "," << \
 		ap->SHRUBBIOMASS() << "," << \
 		ap->HERBBIOMASS() << "," << \
