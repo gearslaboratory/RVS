@@ -102,7 +102,7 @@ int* BiomassDriver::BioMain(int year, string* climate, RVS::DataManagement::Anal
 	
 	// Write output biomass record
 	RC = bdio->write_output_record(&year, ap);
-	
+	std::cout << "bdio write output record:  " << bdio->write_output_record(&year, ap) << std::endl;
 	return RC;
 }
 
