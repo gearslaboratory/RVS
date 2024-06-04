@@ -109,7 +109,7 @@ int* RVS::Biomass::BiomassDIO::write_output_record(int* year, RVS::DataManagemen
 	sql = streamToCharPtr(&sqlstream);
 	queuedWrites.push_back(sql);
 
-	std::cout << "get NPP " << ap->getNPP(*CLIMATE, false) << std::endl;
+	std::cout << "herb biomass " << ap->ap->HERBBIOMASS() << std::endl;
 	return RC;
 }
 
