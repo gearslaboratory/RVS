@@ -162,18 +162,6 @@ int* RVS::DataManagement::DIO::write_output(void)
 	return RC;
 }
 
-    *RC = sqlite3_exec(outdb, "END TRANSACTION", NULL, NULL, &err);
-    if (*RC != SQLITE_OK) {
-        std::cerr << "SQL Error on transaction end: " << err << std::endl;
-        sqlite3_free(err);
-        return RC;
-    }
-
-    sqlite3_free(err);
-
-    return RC;
-}
-
 void RVS::DataManagement::DIO::write_debug_msg(const char* msg)
 {
 	time_t t = time(NULL);
