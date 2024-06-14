@@ -41,14 +41,14 @@ int* SuccessionDriver::SuccessionMain(int year, string* climate, RVS::DataManage
 
 	
 	*yhat = calcProduction(year);
-	calcConfidence(year, *yhat, lower, upper, 0);
+	//calcConfidence(year, *yhat, lower, upper, 0);
 	production = *yhat;
 	// production = exp(*yhat) * SMEAR;
 	// production = 0;
 	
 	ap->primaryProduction = production;
-	ap->lower_confidence = *lower;
-	ap->upper_confidence = *upper;
+	//ap->lower_confidence = *lower;
+	//ap->upper_confidence = *upper;
 	
 	// Get the current succession stage. Values are 0-3, with 0 indicating not yet classified
 	// and -1 indicating uncharacteristic (unclassifiable) plot
