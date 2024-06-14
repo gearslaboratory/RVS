@@ -144,23 +144,23 @@ RVS::DataManagement::DataTable* RVS::DataManagement::DIO::prep_datatable(const c
 
 int* RVS::DataManagement::DIO::write_output(void)
 {
-    char* err = nullptr;
-    *RC = sqlite3_exec(outdb, "BEGIN TRANSACTION", NULL, NULL, &err);
-    if (*RC != SQLITE_OK) {
-        std::cerr << "SQL Error: " << err << std::endl;
-        sqlite3_free(err);
-        return RC;
-    }
+	char* err;
+	*RC = sqlite3_exec(outdb, "BEGIN TRANSACTION", NULL, NULL, &err);
 
-    for (const auto& sql : queuedWrites) {
-        *RC = sqlite3_exec(outdb, sql.c_str(), NULL, NULL, &err);
-        if (*RC != SQLITE_OK) {
-            std::cerr << "Failed to execute query: " << sql << "\nSQL Error: " << err << std::endl;
-            sqlite3_free(err);
-            sqlite3_exec(outdb, "ROLLBACK TRANSACTION", NULL, NULL, NULL);
-            return RC;
-        }
-    }
+	for (int w = 0; w < queuedWrites.size(); w++)
+	{
+		const char* sql = queuedWrites.at(w);
+		*RC = sqlite3_exec(outdb, sql, NULL, NULL, &err);
+		checkDBStatus(outdb, sql, err);
+		sqlite3_free(err);
+	}
+
+	*RC = sqlite3_exec(outdb, "END TRANSACTION", NULL, NULL, &err);
+	checkDBStatus(outdb, NULL, err);
+	sqlite3_free(err);
+
+	return RC;
+}
 
     *RC = sqlite3_exec(outdb, "END TRANSACTION", NULL, NULL, &err);
     if (*RC != SQLITE_OK) {
