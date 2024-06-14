@@ -110,6 +110,6 @@ void RVS::Disturbance::DisturbanceDriver::grazePlot(GRAZE_TYPE grazeType, double
 	}
 
 	ap->biomassReductionTotal = removeAmount * ap->POUNDS_TO_GRAMS;
+	std::cout << "Disturb amount from driver " << ap->biomassReductionTotal << std::endl;
 }
 
-std::cout << "Disturb amount from driver " << ap->biomassReductionTotal << std::endl;
