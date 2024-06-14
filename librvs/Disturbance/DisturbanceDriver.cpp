@@ -93,6 +93,8 @@ void RVS::Disturbance::DisturbanceDriver::grazePlot(GRAZE_TYPE grazeType, double
 {
 	// The removeAmount is calculated in lbs/ac and saved as g/ac
 	double removeAmount;
+	  std::cout << "Grazing with " << numberGrazers << " grazers over " << plotArea 
+              << " sq units area for " << grazeTime << " units of time." << std::endl;
 
 	switch (grazeType)
 	{
@@ -106,6 +108,8 @@ void RVS::Disturbance::DisturbanceDriver::grazePlot(GRAZE_TYPE grazeType, double
 	default:
 		break;
 	}
+
+	std::cout << "Biomass reduction total from disturbance module (grams/acre): " << ap->biomassReductionTotal << std::endl;
 
 	ap->biomassReductionTotal = removeAmount * ap->POUNDS_TO_GRAMS;
 }

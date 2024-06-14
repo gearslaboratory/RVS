@@ -113,7 +113,7 @@ int* RVS::Biomass::BiomassDIO::write_output_record(int* year, RVS::DataManagemen
 	char* sql = new char;
 	sql = streamToCharPtr(&sqlstream);
 	queuedWrites.push_back(sql);
-
+	std::cout << "Disturb about from BiomassDIO: " << ap->BIOMASS_DISTURB_AMOUNT() << std::endl;
 	return RC;
 }
 
