@@ -74,10 +74,10 @@ int* RVS::Biomass::BiomassDIO::write_output_record(int* year, RVS::DataManagemen
 		HERB_HEIGHT_FIELD << ", " << \
 		AVG_SHRUB_HEIGHT_FIELD << ", " << \
 		TOT_SHRUB_COVER_FIELD << ", " << \
-		LOWER_BOUND_FIELD << ", " << \
-		UPPER_BOUND_FIELD << ", " << \
-		"range" << ", " << \
-		S2Y_FIELD << ", " << \
+		// LOWER_BOUND_FIELD << ", " << \
+		// UPPER_BOUND_FIELD << ", " << \
+		// "range" << ", " << \
+		// S2Y_FIELD << ", " << \ // 
 		DISTURBANCE_AMOUNT_FIELD << ", " << \
 		LATITUDE_FIELD << ", " << \
 		LONGITUDE_FIELD << ") " << \
@@ -102,10 +102,10 @@ int* RVS::Biomass::BiomassDIO::write_output_record(int* year, RVS::DataManagemen
 		ap->HERBHEIGHT() << "," << \
 		ap->SHRUBHEIGHT() << "," << \
 		ap->SHRUBCOVER() << "," << \
-		ap->LOWER_BOUND() << "," << \
+		// ap->LOWER_BOUND() << "," << \
 		ap->UPPER_BOUND() << "," << \
 		(ap->UPPER_BOUND() - ap->LOWER_BOUND()) << "," << \
-		ap->S2Y() << "," << \
+		ap->S2Y() << "," << \ //
 		ap->BIOMASS_DISTURB_AMOUNT() << "," << \
 		std::setprecision(10) << ap->LATITUDE() << "," << \
 		std::setprecision(10) << ap->LONGITUDE() << ");";

@@ -441,51 +441,164 @@ double SuccessionDriver::calcProduction(int year)
 	return biomass;
 }
 
+/*
 void SuccessionDriver::calcConfidence(int year, double biomass, double* lower, double* upper, double* level)
 {
-    double npp = ap->getNPP(*climate, false);
+	double ndvi = ap->getNDVI(*climate, false);
+	double ppt = ap->getPPT(*climate, false);
+	double npp = ap->getNPP(*climate, false);
 
-    // Modify NPP as a function of NOT SHRUB cover
-    double adjust = 1 - (ap->SHRUBCOVER() / 100);
-    npp = npp * adjust;
+	// Modify NDVI and PPT as a function of NOT SHRUB cover
+	double adjust = 1 - (ap->SHRUBCOVER() / 100);
 
-    double ln_npp = log(npp);
+	ndvi = ndvi * adjust;
+	ppt = ppt * adjust;
+	npp = npp * adjust;
 
-    // Begin confidence interval code
-    double yhat = exp(biomass) * SMEAR;
-    double ln_yhat = biomass;
+	double ln_ndvi = log(ndvi);
+	double ln_ppt = log(ppt);
+	double ln_npp = log(npp);
 
-    double tval = 1.961961;  // make this dynamic based on degrees of freedom and desired confidence level
+	// Begin confidence interval code
 
-    // Assuming calc_s2b is modified to accept ln_npp
-    double s2y = calc_s2b(&ln_npp);
-    double sy = sqrt(s2y);
+	double yhat = exp(biomass) * SMEAR;
+	double ln_yhat = biomass;
 
-    double ln_yhat_lower = ln_yhat - tval * sy;
-    double yhat_lower = exp(ln_yhat_lower);
-    yhat_lower = yhat_lower * SMEAR;
+	double tval = 1.961961;  // make this dynamic
 
-    double ln_yhat_upper = ln_yhat + tval * sy;
-    double yhat_upper = exp(ln_yhat_upper);
-    yhat_upper = yhat_upper * SMEAR;
+	double s2y = calc_s2b(&ln_ndvi, &ln_ppt);
+	double sy = sqrt(s2y);
 
-    *lower = yhat_lower;
-    *upper = yhat_upper;
+	double ln_yhat_lower = ln_yhat - tval * sy;
+	double yhat_lower = exp(ln_yhat_lower);
+	yhat_lower = yhat_lower * SMEAR;
+
+	double ln_yhat_upper = ln_yhat + tval * sy;
+	double yhat_upper = exp(ln_yhat_upper);
+	yhat_upper = yhat_upper * SMEAR;
+
+	*lower = yhat_lower;
+	*upper = yhat_upper;
 }
 
-double SuccessionDriver::calc_s2b(double* lnNPP)
+double SuccessionDriver::calc_s2b(double* lnNDVI, double* lnPPT)
 {
-    double** dummy = new double*[1];
-    dummy[0] = new double[2];  // only one predictor now
+	double** dummy = new double*[1];
+	dummy[0] = new double[3];
 
-    dummy[0][0] = 1.0;  // intercept
-    dummy[0][1] = *lnNPP;  // only one predictor
+	dummy[0][0] = 1.0;
+	dummy[0][1] = *lnPPT;
+	dummy[0][2] = *lnNDVI;
 
-    double** dummyTrans = matrix_trans(dummy, 1, 2);
-    double** temp = matrix_mult(covariance_matrix, 2, 2, dummyTrans, 2, 1);
-    double** s2b = matrix_mult(dummy, 1, 2, temp, 2, 1);
+	double** dummyTrans = matrix_trans(dummy, 1, 3);
 
-    ap->s2y = s2b[0][0];
+	double** temp = matrix_mult(covariance_matrix, 3, 3, dummyTrans, 3, 1);
 
-    return s2b[0][0];
+	double** s2b = matrix_mult(dummy, 1, 3, temp, 3, 1);
+
+	ap->s2y = s2b[0][0];
+
+	return s2b[0][0];
 }
+
+/*
+double SuccessionDriver::calc_s2b(string* grp_id, double* lnNDVI, double* lnPPT)
+{
+	int index = sdio->find_group_index(grp_id);
+
+	double** dummy = generate_dummy_variables(index, lnPPT, lnNDVI);
+	double** dummyTrans = matrix_trans(dummy, 1, 102);
+
+	double** temp = matrix_mult(covariance_matrix, 102, 102, dummyTrans, 102, 1);
+
+	double** s2b = matrix_mult(dummy, 1, 102, temp, 102, 1);
+
+	ap->s2y = s2b[0][0];
+
+	return s2b[0][0];
+}
+
+
+double** SuccessionDriver::matrix_mult(double** A, int aRow, int aCol, double** B, int bRow, int bCol)
+{
+	const int ROW = aRow;
+	const int INNER = aCol;
+	const int COL = bCol;
+
+	double** C = new double*[ROW];
+
+	for (int row = 0; row != ROW; ++row)
+	{
+		C[row] = new double[COL];
+		for (int col = 0; col != COL; ++col)
+		{
+			double sum = 0;
+			for (int inner = 0; inner != INNER; ++inner)
+			{
+				sum += A[row][inner] * B[inner][col];
+			}
+			C[row][col] = sum;
+		}
+	}
+
+	return C;
+}
+
+double** SuccessionDriver::matrix_trans(double** A, int aRow, int aCol)
+{
+	const int ROW = aRow;
+	const int COL = aCol;
+
+	double** B = new double*[aCol];
+
+	for (int col = 0; col != COL; ++col)
+	{
+		B[col] = new double[ROW];
+
+		for (int row = 0; row != ROW; ++row)
+		{
+			B[col][row] = A[row][col];
+		}
+	}
+	return B;
+}
+
+double** SuccessionDriver::generate_dummy_variables(int index, double* lnPPT, double* lnNDVI)
+{
+	double** dummy = new double*[1];
+	dummy[0] = new double[102];
+
+	dummy[0][0] = 1.0;
+	dummy[0][1] = *lnPPT;
+	dummy[0][2] = *lnNDVI;
+
+	int counter = 1;
+	for (int i = 3; i < 102; i++)
+	{
+		if (counter == index && i < 33)
+		{
+			dummy[0][i] = 1.0;
+		}
+		else if (counter == index && i < 66)
+		{
+			dummy[0][i] = *lnPPT;
+		}
+		else if (counter == index && i < 99)
+		{
+			dummy[0][i] = *lnNDVI;
+		}
+		else
+		{
+			dummy[0][i] = 0.0;
+		}
+
+		if (counter == 33)
+		{
+			counter = 0;
+		}
+
+		counter += 1;
+	}
+	return dummy;
+}
+*/

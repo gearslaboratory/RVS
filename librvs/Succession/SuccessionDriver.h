@@ -60,11 +60,11 @@ namespace Succession
 
 		double calcProduction(int year);
 		void calcConfidence(int year, double biomass, double* lower, double* upper, double* level);
-		double calc_s2b(double* lnNPP);
+		double calc_s2b(double* lnNDVI, double* lnPPT);
 		//double calc_s2b(string* grp_id, double* lnNDVI, double* lnPPT);
 		double** matrix_mult(double** A, int aRow, int aCol, double** B, int bRow, int bCol);
 		double** matrix_trans(double** A, int aRow, int aCol);
-		double** generate_dummy_variables(int index, double* lnNPP);
+		double** generate_dummy_variables(int index, double* lnPPT, double* lnNDVI);
 
 	};
 }
