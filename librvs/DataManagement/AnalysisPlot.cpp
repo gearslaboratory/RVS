@@ -248,4 +248,5 @@ vector<RVS::Disturbance::DisturbAction> RVS::DataManagement::AnalysisPlot::getDi
 	}
 
 	return yearDisturbances;
+	std::cout << "AP yearDisturbances: " << yearDisturbances << std::endl;
 }
