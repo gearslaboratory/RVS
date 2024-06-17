@@ -170,7 +170,7 @@ void run(void(*simFunc)(int year, RVS::DataManagement::AnalysisPlot* currentPlot
 
 	bdio->write_debug_msg("Plants loaded");
 
-	/*
+	
 	map<int, vector<RVS::Disturbance::DisturbAction>> disturbances = ddio->query_disturbance_input();
 	std::cout << "Loading disturbances..." << std::endl;
 
@@ -180,7 +180,7 @@ void run(void(*simFunc)(int year, RVS::DataManagement::AnalysisPlot* currentPlot
 	}
 
 	bdio->write_debug_msg("Disturbances loaded");
-	*/
+
 
 	std::cout << "Done." << std::endl;
 
