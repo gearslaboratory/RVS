@@ -25,7 +25,7 @@ namespace RVS
 	static const char* SUCCESSION_TABLE = "BPS_Combined_Growthrates";
 	static const char* PLANTS_TABLE = "Plants";
 	static const char* HERB_GROWTH_TABLE = "Herb_Growth";
-	static const char* DISTURBANCE_PLOT_TABLE = "Disturbance_Plots";
+	static const char* DISTURBANCE_PLOT_TABLE = "Dist_year7fire";
 	static const char* DISTURBANCE_TABLE = "Disturbance";
 	// ********************
 
