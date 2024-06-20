@@ -115,7 +115,7 @@ int* RVS::Biomass::BiomassDIO::write_output_record(int* year, RVS::DataManagemen
 	queuedWrites.push_back(sql);
 	std::cout << "Disturb about from BiomassDIO: " << ap->BIOMASS_DISTURB_AMOUNT() << std::endl;
 	std::cout << "Biomass reduction total (driver to Biomass): " << ap->biomassReductionTotal << std::endl;
-	std::cout << "Disturbed?: " << ap->disturbed << std::endl;
+
 	return RC;
 }
 
