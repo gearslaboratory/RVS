@@ -23,7 +23,7 @@ AnalysisPlot::AnalysisPlot(RVS::DataManagement::DIO* dio, RVS::DataManagement::D
 	precipValues = vector<double>();
 	nppValues = vector<double>();
 	disturbances = vector<Disturbance::DisturbAction>();
-	disturbed = true;
+	disturbed = false;
 
 	previousHerbProductions = new double[3];
 	previousHerbProductions[0] = 0;
