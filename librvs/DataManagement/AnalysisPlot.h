@@ -15,6 +15,7 @@
 #include "SppRecord.h"
 #include "../Disturbance/DisturbAction.h"
 
+
 namespace RVS { namespace Biomass { class BiomassDriver; } }
 namespace RVS { namespace Biomass { class BiomassEqDriver; } }
 namespace RVS { namespace Fuels   { class FuelsDriver;   } }
@@ -113,6 +114,7 @@ namespace DataManagement
 		double getPPT(string level, bool useRand);
 		// Get NPP for the requested level
 		double getNPP(string level, bool useRand);
+		double getBiomassReductionTotal() const;
 
 		std::vector<RVS::Disturbance::DisturbAction> getDisturbancesForYear(int year);
 		inline void setDisturbances(vector<RVS::Disturbance::DisturbAction> dists) { disturbances = dists; }

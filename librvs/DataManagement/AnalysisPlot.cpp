@@ -249,3 +249,7 @@ vector<RVS::Disturbance::DisturbAction> RVS::DataManagement::AnalysisPlot::getDi
 
 	return yearDisturbances;
 }
+
+double AnalysisPlot::getBiomassReductionTotal() const {
+    return biomassReductionTotal;
+}
