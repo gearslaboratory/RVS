@@ -27,7 +27,7 @@ int* RVS::Disturbance::DisturbanceDriver::DisturbanceMain(int year, RVS::DataMan
 		ap->disturbed = false;
 		ap->burned = false;
 		ap->biomassReductionTotal = 0;
-		std::cout << "Biomass reduction from dist driver (if false) " << ap->biomassReductionTotal << std::endl;
+		
 	}
 	else
 	{
