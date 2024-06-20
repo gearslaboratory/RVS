@@ -27,6 +27,7 @@ int* RVS::Disturbance::DisturbanceDriver::DisturbanceMain(int year, RVS::DataMan
 		ap->disturbed = false;
 		ap->burned = false;
 		ap->biomassReductionTotal = 0;
+		std::cout << "Biomass reduction from dist driver (if false) " << ap->biomassReductionTotal << std::endl;
 	}
 	else
 	{
@@ -87,6 +88,7 @@ void RVS::Disturbance::DisturbanceDriver::burnPlot(const string fireType, float 
 		s->height = 0.01;
 		s->cover = 0.01;
 	}
+	std::cout << "BURNED PLOT " << std::endl;
 }
 
 void RVS::Disturbance::DisturbanceDriver::grazePlot(GRAZE_TYPE grazeType, double numberGrazers, double plotArea, double grazeTime)
