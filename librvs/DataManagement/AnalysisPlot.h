@@ -114,12 +114,15 @@ namespace DataManagement
 		double getPPT(string level, bool useRand);
 		// Get NPP for the requested level
 		double getNPP(string level, bool useRand);
-		double getBiomassReductionTotal() const;
-
+		
 		std::vector<RVS::Disturbance::DisturbAction> getDisturbancesForYear(int year);
 		inline void setDisturbances(vector<RVS::Disturbance::DisturbAction> dists) { disturbances = dists; }
 		// Returns the reduction amount in lbs/ac from grazing
 		inline double BIOMASS_DISTURB_AMOUNT() { return biomassReductionTotal * GRAMS_TO_POUNDS; }
+		bool disturbed = false;
+		bool burned = false;
+		// Total biomass to be removed via disturbance in g/ac
+		double biomassReductionTotal;
 
 	private:
 		int plot_id;
@@ -207,10 +210,7 @@ namespace DataManagement
 		void buildInitialFuels(RVS::DataManagement::DIO* dio);
 
 		vector<RVS::Disturbance::DisturbAction> disturbances;
-		bool disturbed = false;
-		bool burned = false;
-		// Total biomass to be removed via disturbance in g/ac
-		double biomassReductionTotal;
+	
 
 	};
 }
