@@ -240,7 +240,7 @@ void simulate(int year, RVS::DataManagement::AnalysisPlot* currentPlot,
 	if (*RANDOM_CLIMATE) { randomClimate(); }
 
 	RC = sd->SuccessionMain(year, CLIMATE, currentPlot);
-	//RC = dd->DisturbanceMain(year, currentPlot);
+	RC = dd->DisturbanceMain(year, currentPlot);
 	RC = bd->BioMain(year, CLIMATE, currentPlot);
 	RC = fd->FuelsMain(year, currentPlot);
 }
