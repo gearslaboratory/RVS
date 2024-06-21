@@ -172,6 +172,8 @@ namespace DataManagement
 		//double shrubFuels;
 		// Herb fuel of the plot. Calculation :: production + holdover (lbs/ac)
 		//double herbFuels;
+
+		
 		
 		//////////////// FUELS //////////////////
 		//all values held in grams or grams/ac///
