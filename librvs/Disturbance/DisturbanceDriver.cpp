@@ -88,7 +88,7 @@ void RVS::Disturbance::DisturbanceDriver::burnPlot(const string fireType, float 
 		s->height = 0.01;
 		s->cover = 0.01;
 	}
-	std::cout << "BURNED PLOT " << std::endl;
+	
 }
 
 void RVS::Disturbance::DisturbanceDriver::grazePlot(GRAZE_TYPE grazeType, double numberGrazers, double plotArea, double grazeTime)
@@ -112,6 +112,6 @@ void RVS::Disturbance::DisturbanceDriver::grazePlot(GRAZE_TYPE grazeType, double
 	}
 
 	ap->biomassReductionTotal = removeAmount * ap->POUNDS_TO_GRAMS;
-	std::cout << "Disturb amount from driver " << ap->biomassReductionTotal << std::endl;
+	
 }
 
