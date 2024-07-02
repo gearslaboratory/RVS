@@ -68,7 +68,6 @@ int* BiomassDriver::BioMain(int year, string* climate, RVS::DataManagement::Anal
 
 		averageHeight = runShrubHeight / totalShrubCover;
 		averageStem = runShrubStem / totalShrubCover;
-		std::cout << "run shrub height from biomass driver" << ap->runShrubHeight<< std::endl;
 	}
 
 	ap->shrubCover = totalShrubCover;
