@@ -97,7 +97,7 @@ int* SuccessionDriver::SuccessionMain(int year, string* climate, RVS::DataManage
 	ap->currentStageType = successionStrParameters[sclass - 1]["cohort_type"];
 
 	// Check if this type of succession stage is even supported
-	if (ap->currentStageType.compare("S") != 0 && ap->currentStageType.compare("H") != 0)
+	if (ap->currentStageType.compare("S") != 0 || ap->currentStageType.compare("H") != 0)
 	{
 		stringstream* s = new stringstream();
 		*s << "PLOT_ID: " << ap->PLOT_ID() << ". Not a S or H plot. RVS does not model (grow shrubs).";
