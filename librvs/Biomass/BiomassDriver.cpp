@@ -73,6 +73,7 @@ int* BiomassDriver::BioMain(int year, string* climate, RVS::DataManagement::Anal
 	ap->shrubCover = totalShrubCover;
 	ap->shrubHeight = averageHeight;
 	ap->shrubAvgStem = averageStem;
+	std::cout << "shrub height from biomass driver" << ap->shrubHeight<< std::endl;
 
 	/////////// HERBS ///////////
 	
