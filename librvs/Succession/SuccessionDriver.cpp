@@ -54,7 +54,6 @@ int* SuccessionDriver::SuccessionMain(int year, string* climate, RVS::DataManage
 	// and -1 indicating uncharacteristic (unclassifiable) plot
 	int sclass = ap->CURRENT_SUCCESSION_STAGE();
 	std::cout << "Sclass from sx driver " << ap->currentStage << std::endl;
-	std::cout << "Sclass from sx driver " << ap->currentStageType << std::endl;
 	// Landfire uses codes other than 1-3, so as long as it's not an error code (>100) just 
 	// assume late stage (3)
 	if (sclass > 3 && sclass < 100) { sclass = 3; }

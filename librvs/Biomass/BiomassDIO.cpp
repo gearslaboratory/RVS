@@ -113,7 +113,7 @@ int* RVS::Biomass::BiomassDIO::write_output_record(int* year, RVS::DataManagemen
 	char* sql = new char;
 	sql = streamToCharPtr(&sqlstream);
 	queuedWrites.push_back(sql);
-
+	std::cout << "shrub height " << ap->SHRUBHEIGHT() << std::endl;
 	return RC;
 }
 
