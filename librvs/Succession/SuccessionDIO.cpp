@@ -54,7 +54,6 @@ int* RVS::Succession::SuccessionDIO::write_output_record(int* year, RVS::DataMan
 	char* sql = new char;
 	sql = streamToCharPtr(&sqlstream);
 	queuedWrites.push_back(sql);
-	std::cout << "Stage type from sx DIO " << ap->CURRENT_STAGE_TYPE() << std::endl;
 	return RC;
 }
 
@@ -111,7 +110,7 @@ bool RVS::Succession::SuccessionDIO::get_succession_data(string bps_model_code, 
 
 	string cohort_type;
 	getVal(succDt->getStmt(), succDt->Columns["COHORT_TYPE"], &cohort_type);
-	std::cout << "Cohort Type for BPS Model Code " << bps_model_code << ": " << cohort_type << std::endl;
+	std::cout << "Cohort Type for plot no." << ap->PLOT_ID() << "BPS Model Code " << bps_model_code << ": " << cohort_type << std::endl;
 	string species1;
 	string species2;
 	string species3;
