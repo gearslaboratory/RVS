@@ -189,7 +189,7 @@ int* RVS::Biomass::BiomassDIO::write_intermediate_record(int* year, RVS::DataMan
 	char* sql = new char;
 	sql = streamToCharPtr(&sqlstream);
 	queuedWrites.push_back(sql);
-	std:cout << "Plot id: " << ap->PLOT_ID() << std::endl;
+	//std:cout << "Plot id: " << ap->PLOT_ID() << std::endl;
 	return RC;
 }
 
