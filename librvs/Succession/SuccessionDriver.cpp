@@ -53,7 +53,7 @@ int* SuccessionDriver::SuccessionMain(int year, string* climate, RVS::DataManage
 	// Get the current succession stage. Values are 0-3, with 0 indicating not yet classified
 	// and -1 indicating uncharacteristic (unclassifiable) plot
 	int sclass = ap->CURRENT_SUCCESSION_STAGE();
-	std::cout << "Sclass from sx driver " << ap->currentStage << std::endl;
+
 
 	
 
