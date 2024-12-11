@@ -14,6 +14,7 @@
 *.vcxproj.user
 *.opendb
 RVS_Debug.txt
+outs/rasters/
 
 # Build results
 
