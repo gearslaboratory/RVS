@@ -3,3 +3,4 @@ google-cloud-storage
 earthengine-api
 pandas
 numpy
+geemap
