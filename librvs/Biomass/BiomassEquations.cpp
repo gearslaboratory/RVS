@@ -230,7 +230,7 @@ double RVS::Biomass::BiomassEquations::eq_1161(double cf1, double cf2, double p1
 
 double RVS::Biomass::BiomassEquations::eq_1162(double cf1, double cf2, double cf3, double height)
 {
-	double biomass = exp(cf1 + cf2 * ln(height)) * cf3;
+	double biomass = exp(cf1 + cf2 * log(height)) * cf3;
 	return biomass;
 }
 
