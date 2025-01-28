@@ -15,6 +15,7 @@
 *.opendb
 RVS_Debug.txt
 outs/rasters/
+Disturbances_2023_2024/
 
 # Build results
 
