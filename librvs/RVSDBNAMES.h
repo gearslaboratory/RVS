@@ -143,6 +143,7 @@ namespace RVS
 	static const char* BIOMASS_HERB_OUT_FIELD = "herb_biomass";
 	static const char* BIOMASS_SHRUB_OUT_FIELD = "shrub_biomass";
 	static const char* BIOMASS_TOTAL_OUT_FIELD = "total_biomass";
+	static const char* CARBON_TOTAL_OUT_FIELD = "total_carbon";
 	static const char* BIOMASS_SHRUB_CALC_FIELD = "biomass_calc";
 	static const char* FUEL_1HR_SHRUB_WB = "shrub_1hr_woodbark";
 	static const char* FUEL_1HR_SHRUB_FOLIAGE = "shrub_1hr_foliage";

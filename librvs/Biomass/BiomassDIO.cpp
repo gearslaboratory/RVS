@@ -30,6 +30,7 @@ int* RVS::Biomass::BiomassDIO::create_output_table()
 		BIOMASS_HERB_PP_FIELD << " REAL, " << \
 		BIOMASS_HERB_HOLDOVER_FIELD << " REAL, " << \
 		BIOMASS_TOTAL_OUT_FIELD << " REAL, " << \
+		CARBON_TOTAL_OUT_FIELD << " REAL, " << \
 		HERB_COVER_FIELD << " REAL, " << \
 		HERB_HEIGHT_FIELD << " REAL, " << \
 		AVG_SHRUB_HEIGHT_FIELD << " REAL, " << \
@@ -65,6 +66,7 @@ int* RVS::Biomass::BiomassDIO::write_output_record(int* year, RVS::DataManagemen
 		NPP_OUT_FIELD << ", "<< \
 
 		BIOMASS_TOTAL_OUT_FIELD << ", "<< \
+		CARBON_TOTAL_OUT_FIELD << " REAL, " << \
 		BIOMASS_SHRUB_OUT_FIELD << ", " << \
 		BIOMASS_HERB_OUT_FIELD << ", " << \
 		BIOMASS_RAW_PRODUCTION_FIELD << ", " << \
@@ -93,6 +95,7 @@ int* RVS::Biomass::BiomassDIO::write_output_record(int* year, RVS::DataManagemen
 		ap->getNPP(*CLIMATE, false) << "," << \
 
 		ap->TOTALBIOMASS() << "," << \
+		ap->TOTALCARBON() << "," << \
 		ap->SHRUBBIOMASS() << "," << \
 		ap->HERBBIOMASS() << "," << \
 		ap->RAWPRODUCTION() << "," << \

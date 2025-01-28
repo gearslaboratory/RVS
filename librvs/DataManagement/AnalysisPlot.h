@@ -80,6 +80,7 @@ namespace DataManagement
 		inline double SHRUBSINGLESTEM() { return shrubAvgStem * GRAMS_TO_POUNDS; }
 		// Total biomass (shrubs + herbs) (lbs/ac)
 		inline double TOTALBIOMASS() { return totalBiomass; }
+		inline double TOTALCARBON() { return totalBiomass * 0.5; }
 
 		// Fuels returns.  CONVERTS TO LBS/AC
 		inline const double SHRUB_1HR_WB() { return shrub1HourWB * GRAMS_TO_POUNDS; }
