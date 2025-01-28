@@ -93,6 +93,10 @@ double RVS::Biomass::BiomassEquations::eq_BAT(int equationNumber, double* coefs,
 	{
 		biomass = eq_1161(coefs[0], coefs[1], params->at("VOL"));
 	}
+	else if (equationNumber == 1162)
+	{
+		biomass = eq_1162(coefs[0], coefs[1], coefs[2], params->at("HT"));
+	}
 	else
 	{
 		//$$ Throw not found exception
@@ -223,6 +227,13 @@ double RVS::Biomass::BiomassEquations::eq_1161(double cf1, double cf2, double p1
 	double biomass = cf1 * (p1 / cf2);
 	return biomass;
 }
+
+double RVS::Biomass::BiomassEquations::eq_1162(double cf1, double cf2, double cf3, double height)
+{
+	double biomass = exp(cf1 + cf2 * ln(height)) * cf3;
+	return biomass;
+}
+
 
 double RVS::Biomass::BiomassEquations::shunt(string equation, map<string, double> vars)
 {
