@@ -45,6 +45,8 @@ namespace DataManagement
 		inline const string BPS_MODEL_NUM() { return bps_model_num; }
 		inline const string GRP_ID() { return grp_id; }
 		inline const int NPP() { return npp; }
+		// True if the input database provided an NPP column for this plot
+		inline bool HAS_NPP() { return !nppValues.empty(); }
 		inline const bool ISDRY() { return dryClimate; }
 
 		inline const double LOWER_BOUND() { return lower_confidence; }
