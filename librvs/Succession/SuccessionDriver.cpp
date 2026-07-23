@@ -422,15 +422,13 @@ double SuccessionDriver::calcProduction(int year)
 {
 	double ndvi = ap->getNDVI(*climate, false);
 	double ppt = ap->getPPT(*climate, false);
-	double npp = ap->getNPP(*climate, false);
-
-	
 
 	double ln_ndvi = log(ndvi);
 	double ln_ppt = log(ppt);
 
-	//double rawProduction = -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
-	double rawProduction = npp;
+	double rawProduction = ap->HAS_NPP()
+		? ap->getNPP(*climate, false)
+		: -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
 	ap->rawProduction = rawProduction;
 
 	// Modify NDVI and PPT as a function of NOT SHRUB cover
@@ -443,9 +441,9 @@ double SuccessionDriver::calcProduction(int year)
 	ln_ndvi = log(ndvi);
 	ln_ppt = log(ppt);
 
-	// double biomass = -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
-	double biomass = npp;
-	// double biomass = 0;
+	double biomass = ap->HAS_NPP()
+		? ap->getNPP(*climate, false)
+		: -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
 	return biomass;
 }
 
