@@ -420,15 +420,23 @@ list<string> SuccessionDriver::makeSpeciesList(map<string, string> strVals)
 
 double SuccessionDriver::calcProduction(int year)
 {
+	// NDVI/PPT are only read when NPP isn't available -- ap->getNDVI()/getPPT() index
+	// unconditionally into vectors built from NDVI_*/PPT_* input columns, so calling them
+	// when those columns are absent (NPP-only input) crashes on an empty-vector access.
+	if (ap->HAS_NPP())
+	{
+		double npp = ap->getNPP(*climate, false);
+		ap->rawProduction = npp;
+		return npp;
+	}
+
 	double ndvi = ap->getNDVI(*climate, false);
 	double ppt = ap->getPPT(*climate, false);
 
 	double ln_ndvi = log(ndvi);
 	double ln_ppt = log(ppt);
 
-	double rawProduction = ap->HAS_NPP()
-		? ap->getNPP(*climate, false)
-		: -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
+	double rawProduction = -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
 	ap->rawProduction = rawProduction;
 
 	// Modify NDVI and PPT as a function of NOT SHRUB cover
@@ -437,13 +445,10 @@ double SuccessionDriver::calcProduction(int year)
 	ndvi = ndvi * adjust;
 	ppt = ppt * adjust;
 
-
 	ln_ndvi = log(ndvi);
 	ln_ppt = log(ppt);
 
-	double biomass = ap->HAS_NPP()
-		? ap->getNPP(*climate, false)
-		: -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
+	double biomass = -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
 	return biomass;
 }
 
