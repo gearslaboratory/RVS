@@ -90,8 +90,8 @@ int* RVS::Biomass::BiomassDIO::write_output_record(int* year, RVS::DataManagemen
 		ap->BPS_NUM() << ",\"" << \
 		ap->BPS_MODEL_NUM() << "\",\"" << \
 		ap->GRP_ID() << "\"," << \
-		ap->getNDVI(*CLIMATE, false) << "," << \
-		ap->getPPT(*CLIMATE, false) << "," << \
+		(ap->HAS_NPP() ? 0 : ap->getNDVI(*CLIMATE, false)) << "," << \
+		(ap->HAS_NPP() ? 0 : ap->getPPT(*CLIMATE, false)) << "," << \
 		(ap->HAS_NPP() ? ap->getNPP(*CLIMATE, false) : 0) << "," << \
 
 		ap->TOTALBIOMASS() << "," << \
