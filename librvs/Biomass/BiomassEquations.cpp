@@ -97,6 +97,34 @@ double RVS::Biomass::BiomassEquations::eq_BAT(int equationNumber, double* coefs,
 	{
 		biomass = eq_1162(coefs[0], coefs[1], coefs[2], params->at("HT"));
 	}
+	else if (equationNumber == 744)
+	{
+		biomass = eq_quadratic(coefs[0], coefs[1], coefs[2], params->at("COV"));
+	}
+	else if (equationNumber == 1217 || equationNumber == 1220 ||
+		equationNumber == 1223 || equationNumber == 1226 || equationNumber == 1229 ||
+		equationNumber == 1232 || equationNumber == 1235 ||
+		equationNumber == 1238 || equationNumber == 1241 ||
+		equationNumber == 1244 || equationNumber == 1247 || equationNumber == 1251 ||
+		equationNumber == 1256 || equationNumber == 1259 ||
+		equationNumber == 1512 || equationNumber == 1513 ||
+		equationNumber == 1514 || equationNumber == 1515 ||
+		equationNumber == 1516 || equationNumber == 1518)
+	{
+		biomass = eq_exp_ln_bias(coefs[0], coefs[1], coefs[2], params->at("HT"));
+		// kg to grams
+		if (equationNumber >= 1512 && equationNumber <= 1518)
+		{
+			biomass *= 1000;
+		}
+	}
+	else if (equationNumber == 1470 || equationNumber == 1494 || equationNumber == 1495 || equationNumber == 1499 ||
+		equationNumber == 1500 || equationNumber == 1503 ||
+		equationNumber == 1504 || equationNumber == 1506 ||
+		equationNumber == 1507)
+	{
+		biomass = eq_exp_ln(coefs[0], coefs[1], params->at("VOL"));
+	}
 	else
 	{
 		//$$ Throw not found exception
@@ -230,8 +258,22 @@ double RVS::Biomass::BiomassEquations::eq_1161(double cf1, double cf2, double p1
 
 double RVS::Biomass::BiomassEquations::eq_1162(double cf1, double cf2, double cf3, double height)
 {
-	double biomass = exp(cf1 + cf2 * log(height)) * cf3;
-	return biomass;
+	return eq_exp_ln_bias(cf1, cf2, cf3, height);
+}
+
+double RVS::Biomass::BiomassEquations::eq_exp_ln(double cf1, double cf2, double p1)
+{
+	return exp(cf1 + cf2 * log(p1));
+}
+
+double RVS::Biomass::BiomassEquations::eq_exp_ln_bias(double cf1, double cf2, double cf3, double p1)
+{
+	return eq_exp_ln(cf1, cf2, p1) * cf3;
+}
+
+double RVS::Biomass::BiomassEquations::eq_quadratic(double cf1, double cf2, double cf3, double p1)
+{
+	return cf1 + cf2 * p1 + cf3 * p1 * p1;
 }
 
 
@@ -274,5 +316,3 @@ double RVS::Biomass::BiomassEquations::shunt(string equation, map<string, double
 
 	return 0;
 }
-
-
