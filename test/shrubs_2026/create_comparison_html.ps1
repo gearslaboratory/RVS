@@ -31,6 +31,7 @@ Import-Csv -LiteralPath (Join-Path $PSScriptRoot 'equation_updates.csv') | ForEa
 foreach ($row in $rows) {
     $update = $updatesByCode[$row.spp_code]
     $row | Add-Member -NotePropertyName common_name -NotePropertyValue $update.common_name
+    $row | Add-Member -NotePropertyName scientific_name -NotePropertyValue $update.scientific_name
     $row | Add-Member -NotePropertyName selection -NotePropertyValue $(if ($update.equation_type -eq 'BioPak existing') { 'Existing' } else { 'New' })
     $row | Add-Member -NotePropertyName updated_where -NotePropertyValue $(if ($update.change -match 'code') { 'Crosswalk + code' } else { 'Crosswalk' })
 }
@@ -51,7 +52,7 @@ $tableRows = foreach ($row in $rows) {
     $value = [double]$row.biomass_lb_acre
     $pct = [double]$row.difference_pct
     $sign = if ($pct -ge 0) { '+' } else { '' }
-    "<tr><td>$($row.spp_code)</td><td>$($row.common_name)</td><td>$($row.equation)</td><td>$($row.selection)</td><td>$($row.updated_where)</td><td>$($value.ToString('N1'))</td><td>$sign$($pct.ToString('N1'))%</td></tr>"
+    "<tr><td>$($row.spp_code)</td><td>$($row.common_name)</td><td>$($row.scientific_name)</td><td>$($row.equation)</td><td>$($row.selection)</td><td>$($row.updated_where)</td><td>$($value.ToString('N1'))</td><td>$sign$($pct.ToString('N1'))%</td></tr>"
 }
 
 $output = Join-Path $PSScriptRoot 'shrubs_2026_before_after.html'
@@ -66,7 +67,7 @@ body{font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif;margin:0;color:#
 <p class="note">One shrub at 100% cover and 100 cm height; expanded shrub biomass in lb/ac. Non-BioPak equations are used only when published after BioPak (1994), or BioPak is used when it is the only usable exact species equation.</p>
 <div class="metric"><b>ARTR2 baseline (BioPak 1160)</b><br>$($baseline.ToString('N1')) lb/ac</div><div class="metric"><b>Active changed mappings</b><br>$($rows.Count)</div>
 <h2>Final active biomass</h2><p class="legend"><i class="swatch new"></i>New equation <i class="swatch existing"></i>Existing BioPak <span class="note">Vertical line: ARTR2 baseline; log scale.</span></p><div class="chart">$($dotRows -join "`n")</div>
-<h2>Output table</h2><table><thead><tr><th>Species</th><th>Common name</th><th>BAT</th><th>Type</th><th>Updated</th><th>lb/ac</th><th>vs ARTR2</th></tr></thead><tbody>$($tableRows -join "`n")</tbody></table>
+<h2>Output table</h2><table><thead><tr><th>Code</th><th>Common name</th><th>Scientific name</th><th>BAT</th><th>Type</th><th>Updated</th><th>lb/ac</th><th>vs ARTR2</th></tr></thead><tbody>$($tableRows -join "`n")</tbody></table>
 <footer>ARTR2/1160 is the unchanged comparison baseline and is not included in the update count.</footer></main></body></html>
 "@
 Set-Content -LiteralPath $output -Value $document -NoNewline

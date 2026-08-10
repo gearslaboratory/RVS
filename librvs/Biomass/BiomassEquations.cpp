@@ -69,7 +69,7 @@ double RVS::Biomass::BiomassEquations::eq_BAT(int equationNumber, double* coefs,
 	{
 		biomass = eq_1012(coefs[0], coefs[1], coefs[2], params->at("LEN"), params->at("WID"));
 	}
-	else if (equationNumber == 1058 || equationNumber == 1137)
+	else if (equationNumber == 1058 || equationNumber == 1062 || equationNumber == 1137)
 	{
 		biomass = eq_1058(coefs[0], coefs[1], coefs[2], params->at("COV"));
 	}

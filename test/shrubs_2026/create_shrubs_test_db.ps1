@@ -24,6 +24,9 @@ $selectedBat = [ordered]@{
     ERFA2 = 1516; HESC2 = 1503; HIIN3 = 1504; MAAQ2 = 1470; PREM = 1244
     PUTR2 = 636; QUCH2 = 1247; QUDU = 1518; QUKE = 1251; QUVA = 1256; QUWI2 = 1259
     RUPA = 201; SAME3 = 1506; STVI2 = 1507; SYAL = 804; VASC = 743
+    ARCO3 = 1058; BENE = 1062; BERE = 631; CASE8 = 164; CESA = 1067; CHUM = 798; COCOC = 166
+    COST = 167; GASH = 1087; HABL = 634; PAMY = 832; RHMA = 1097; RIBES = 1096; ROSA = 638
+    RUUR = 202; RULE = 1105; SACE = 1137; SAJE = 168; SYMPH = 639; VACCI = 807
 }
 
 $crosswalkPath = Join-Path $TaskDirectory 'Bio_Crosswalk.csv'
@@ -120,7 +123,10 @@ $equationUpdates = @()
 foreach ($equationNumber in ($selectedEquationNumbers | Sort-Object -Unique)) {
     $equation = $equationByNumber[$equationNumber]
     $isBioPak = $equation.comments -eq 'BioPak'
-    $needsCode = $equationNumber -in 744, 1223, 1251, 1470, 1494, 1512, 1513, 1514, 1515, 1516, 1518
+    $needsCode = $equationNumber -in 744, 1062,
+        1217, 1220, 1223, 1226, 1229, 1232, 1235, 1238, 1241, 1244, 1247, 1251, 1256, 1259,
+        1470, 1494, 1495, 1499, 1500, 1503, 1504, 1506, 1507,
+        1512, 1513, 1514, 1515, 1516, 1518
     $equationUpdates += [pscustomobject][ordered]@{
         equation_type = if ($isBioPak) { 'BioPak existing' } else { 'Newer non-BioPak' }
         source = $equation.comments
