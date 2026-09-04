@@ -138,3 +138,21 @@ librvs/sqlite3.c
 librvs/sqlite3.h
 *.db
 *.tif
+
+# Test/scratch data - not part of the build; template db is the one exception
+test/*
+!test/2026_template/
+test/2026_template/*
+!test/2026_template/2026_template.db
+
+.vscode/
+041526_test/
+240226_test/outs/
+240724_test/outs/
+240724_test/RVS_Debug_npp_test.txt
+Dockerfile.local
+RVS_Data_Specifications_Update.docx
+database.txt
+demo_test_out/
+kyle_points/
+outputs_to_rasters.ipynb
