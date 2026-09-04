@@ -51,6 +51,7 @@ namespace Biomass
 		static double eq_exp_ln(double cf1, double cf2, double p1);
 		static double eq_exp_ln_bias(double cf1, double cf2, double cf3, double p1);
 		static double eq_quadratic(double cf1, double cf2, double cf3, double p1);
+		static double eq_1519(double cf1, double cf2, double vol_cm3);
 
 		static double shunt(std::string equation, std::map<std::string, double> variables);
 	};

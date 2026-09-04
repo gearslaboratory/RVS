@@ -125,6 +125,10 @@ double RVS::Biomass::BiomassEquations::eq_BAT(int equationNumber, double* coefs,
 	{
 		biomass = eq_exp_ln(coefs[0], coefs[1], params->at("VOL"));
 	}
+	else if (equationNumber == 1519)
+	{
+		biomass = eq_1519(coefs[0], coefs[1], params->at("VOL"));
+	}
 	else
 	{
 		//$$ Throw not found exception
@@ -274,6 +278,15 @@ double RVS::Biomass::BiomassEquations::eq_exp_ln_bias(double cf1, double cf2, do
 double RVS::Biomass::BiomassEquations::eq_quadratic(double cf1, double cf2, double cf3, double p1)
 {
 	return cf1 + cf2 * p1 + cf3 * p1 * p1;
+}
+
+double RVS::Biomass::BiomassEquations::eq_1519(double cf1, double cf2, double vol_cm3)
+{
+	// Convert inputs cm3 to m3, output kg to g.
+	double vol_m3 = vol_cm3 / 1000000.0;
+	double weight_kg = pow(10, cf1 + cf2 * log10(vol_m3));
+	double biomass = weight_kg * 1000.0;
+	return biomass;
 }
 
 
