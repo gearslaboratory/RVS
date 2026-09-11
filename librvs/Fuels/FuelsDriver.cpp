@@ -1,5 +1,8 @@
 #include "FuelsDriver.h"
 
+#include <algorithm>
+#include <cctype>
+
 RVS::Fuels::FuelsDriver::FuelsDriver(RVS::Fuels::FuelsDIO* fdio, bool suppress_messages)
 {
 	this->fdio = fdio;
@@ -54,9 +57,19 @@ int* RVS::Fuels::FuelsDriver::FuelsMain(int year, RVS::DataManagement::AnalysisP
 		applyDisturbance(year);
 	}
 
+	ap->treeCover = calcTreeCover();
+
 	if (ap->FUEL_TOTAL() < 200)
 	{
 		ap->fbfmName = "NB";
+	}
+	else if (ap->TREECOVER() > 50)
+	{
+		ap->fbfmName = "TL3";
+	}
+	else if (ap->TREECOVER() >= 25)
+	{
+		ap->fbfmName = "TU1";
 	}
 	else
 	{
@@ -67,6 +80,32 @@ int* RVS::Fuels::FuelsDriver::FuelsMain(int year, RVS::DataManagement::AnalysisP
 	// Write out the total fuels record
 	RC = fdio->write_output_record(&year, ap);
 	return RC;
+}
+
+
+double RVS::Fuels::FuelsDriver::calcTreeCover()
+{
+	double treeCover = 0;
+
+	for (auto &spp : *(ap->SHRUB_RECORDS()))
+	{
+		string speciesCode = spp->SPP_CODE();
+		map<string, bool>::iterator it = treeSpecies.find(speciesCode);
+
+		if (it == treeSpecies.end())
+		{
+			string lifeform = fdio->query_crosswalk_lifeform(speciesCode);
+			transform(lifeform.begin(), lifeform.end(), lifeform.begin(), ::toupper);
+			it = treeSpecies.insert(pair<string, bool>(speciesCode, lifeform.compare("TREE") == 0)).first;
+		}
+
+		if (it->second)
+		{
+			treeCover += spp->COVER();
+		}
+	}
+
+	return min(treeCover, 100.0);
 }
 
 

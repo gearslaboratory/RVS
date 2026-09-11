@@ -63,6 +63,7 @@ namespace DataManagement
 		inline double SHRUBHEIGHT() { return shrubHeight; }
 		// Total shrub cover (%)
 		inline double SHRUBCOVER() { return shrubCover; }
+		inline double TREECOVER() { return treeCover; }
 		// Herbaceous height (cm)
 		inline double HERBHEIGHT() { return herbHeight; }
 		// Herbaceous cover (%)
@@ -150,6 +151,7 @@ namespace DataManagement
 		double shrubHeight;
 		// Total shrub cover 
 		double shrubCover;
+		double treeCover;
 		// Average herb height
 		double herbHeight;
 		// Total herb cover 

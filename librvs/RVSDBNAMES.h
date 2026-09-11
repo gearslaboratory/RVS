@@ -44,6 +44,7 @@ namespace RVS
 	static const char* DOM_SPP_FIELD = "dom_spp";
 	static const char* SPP_CODE_FIELD = "spp_code";
 	static const char* LIFEFORM_FIELD = "Lifeform2";
+	static const char* CROSSWALK_LIFEFORM_FIELD = "lifeform";
 	static const char* RET_CODE_FIELD = "ret_code";
 	static const char* EQUATION_NUMBER_FIELD = "EQN_NUM";
 	static const char* EQUATION_TYPE_FIELD = "eqn_type";
@@ -153,6 +154,7 @@ namespace RVS
 	static const char* FUEL_100HR_FIELD = "fuel_100hr";
 	static const char* FUEL_1000HR_FIELD = "fuel_1000hr";
 	static const char* FUEL_TOTAL_FIELD = "total_fuels";
+	static const char* TREE_COVER_OUT_FIELD = "tree_cover";
 	static const char* UPPER_BOUND_FIELD = "upper_bound";
 	static const char* LOWER_BOUND_FIELD = "lower_bound";
 	static const char* S2Y_FIELD = "s2y";
