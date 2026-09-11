@@ -33,6 +33,7 @@ int* RVS::Fuels::FuelsDIO::create_output_table()
 		FUEL_100HR_FIELD << " REAL, " << \
 		FUEL_1000HR_FIELD << " REAL, " << \
 		FUEL_TOTAL_FIELD << " REAL, " << \
+		TREE_COVER_OUT_FIELD << " REAL, " << \
 		FC_FBFM_FIELD << " TEXT); ";
 
 	char* sql = new char;
@@ -65,6 +66,7 @@ int* RVS::Fuels::FuelsDIO::write_output_record(int* year, RVS::DataManagement::A
 		FUEL_100HR_FIELD << ", " << \
 		FUEL_1000HR_FIELD << ", " << \
 		FUEL_TOTAL_FIELD << ", " << \
+		TREE_COVER_OUT_FIELD << ", " << \
 		FC_FBFM_FIELD << ") " << \
 		"VALUES (" << \
 		ap->PLOT_ID() << ",\"" << \
@@ -84,7 +86,8 @@ int* RVS::Fuels::FuelsDIO::write_output_record(int* year, RVS::DataManagement::A
 		ap->SHRUB_10HR() << "," << \
 		ap->SHRUB_100HR() << "," << \
 		ap->SHRUB_1000HR() << "," << \
-		ap->FUEL_TOTAL() << ", \"" << \
+		ap->FUEL_TOTAL() << "," << \
+		ap->TREECOVER() << ", \"" << \
 		ap->FBFM_NAME() << "\");";
 
 	char* sql = new char;
@@ -199,6 +202,20 @@ std::map<std::string, int> RVS::Fuels::FuelsDIO::query_crosswalk_table(std::stri
 	}
 
 	return equationNumbers;
+}
+
+std::string RVS::Fuels::FuelsDIO::query_crosswalk_lifeform(std::string spp)
+{
+	const char* sql = query_base(BIOMASS_CROSSWALK_TABLE, SPP_CODE_FIELD, spp);
+	RVS::DataManagement::DataTable* dt = prep_datatable(sql, rvsdb);
+
+	std::string lifeform = "";
+	if (*(dt->STATUS()) == SQLITE_ROW)
+	{
+		getVal(dt->getStmt(), dt->Columns[CROSSWALK_LIFEFORM_FIELD], &lifeform);
+	}
+
+	return lifeform;
 }
 
 RVS::DataManagement::DataTable* RVS::Fuels::FuelsDIO::query_equation_table(std::map<std::string, int> equationNumbers)

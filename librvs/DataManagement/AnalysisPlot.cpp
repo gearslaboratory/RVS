@@ -11,6 +11,7 @@ AnalysisPlot::AnalysisPlot(RVS::DataManagement::DIO* dio, RVS::DataManagement::D
 	bps_model_num = "";
 	shrubHeight = 0;
 	shrubCover = 0;
+	treeCover = 0;
 	totalBiomass = 0;
 	herbBiomass = 0;
 	herbHoldoverBiomass = 0;

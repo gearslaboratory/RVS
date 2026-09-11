@@ -43,6 +43,7 @@ namespace Fuels
 		double calcShrubFuel(int equationNumber, RVS::DataManagement::SppRecord* spp);
 
 		// Current FBFM
+		double calcTreeCover();
 		string calcFBFMDry();
 		string calcFBFMHumid();
 
@@ -57,6 +58,8 @@ namespace Fuels
 		double calc1000HrFuel(double height);
 
 		void applyDisturbance(int year);
+
+		map<string, bool> treeSpecies;
 	};
 }
 }

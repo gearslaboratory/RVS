@@ -40,6 +40,7 @@ namespace Fuels
 
 		// Queries the fuels crosswalk table for all the equations available for a species.
 		std::map<std::string, int> query_crosswalk_table(std::string spp);
+		std::string query_crosswalk_lifeform(std::string spp);
 		RVS::DataManagement::DataTable* query_equation_table(std::map<std::string, int> equationNumbers);
 		RVS::DataManagement::DataTable* query_equation_table(int equationNumber);
 		RVS::DataManagement::DataTable* query_fbfm_rules_selector(void);
