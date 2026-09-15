@@ -48,7 +48,7 @@ int* RVS::Fuels::FuelsDriver::FuelsMain(int year, RVS::DataManagement::AnalysisP
 	ap->shrub1HourFoliage = bio * prop1HrFol;
 	ap->shrub10Hour = bio * prop10Hr;
 	ap->shrub100Hour = bio * prop100Hr;
-	ap->shrub1000Hour = bio * shrub1000Hour;
+	ap->shrub1000Hour = bio * prop1000Hr;
 
 	ap->total1HrFuel = ap->herbFuel + ap->shrub1HourWB + ap->shrub1HourFoliage;
 
