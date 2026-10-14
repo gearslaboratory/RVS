@@ -119,7 +119,7 @@ double RVS::Biomass::BiomassEquations::eq_BAT(int equationNumber, double* coefs,
 		}
 	}
 	else if (equationNumber == 1470 || equationNumber == 1494 || equationNumber == 1495 || equationNumber == 1499 ||
-		equationNumber == 1500 || equationNumber == 1503 ||
+		equationNumber == 1500 || equationNumber == 1501 || equationNumber == 1503 ||
 		equationNumber == 1504 || equationNumber == 1506 ||
 		equationNumber == 1507)
 	{
