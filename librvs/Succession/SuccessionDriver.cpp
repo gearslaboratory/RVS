@@ -61,9 +61,17 @@ int* SuccessionDriver::SuccessionMain(int year, string* climate, RVS::DataManage
 	// assume late stage (3)
 	if (sclass > 3 && sclass < 100) {
     sclass = 3;
-	} else {
+	} else if (sclass < 0 || sclass >= 100) {
     sclass = -1;
 	}
+
+	// Some BpS have fewer than 3 stages, so "late" is the last stage that exists
+	int lastStage = 0;
+	for (int i = 0; i < successionNumParameters.size(); i++)
+	{
+		if (successionNumParameters[i].size() > 0) { lastStage = i + 1; }
+	}
+	if (sclass > lastStage) { sclass = lastStage > 0 ? lastStage : -1; }
 
 	// Attempt to retreive plot age
 	int ageOfPlot = ap->plotAge;
