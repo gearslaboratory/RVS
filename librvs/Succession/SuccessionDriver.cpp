@@ -42,8 +42,9 @@ int* SuccessionDriver::SuccessionMain(int year, string* climate, RVS::DataManage
 	
 	*yhat = calcProduction(year);
 	//calcConfidence(year, *yhat, lower, upper, 0);
-	production = *yhat;
-	// production = exp(*yhat) * SMEAR;
+	// NPP input is already in lbs/acre; the PPT/NDVI regression is on a log scale
+	if (ap->HAS_NPP()) { production = *yhat; }
+	else { production = exp(*yhat) * SMEAR; }
 	// production = 0;
 	
 	ap->primaryProduction = production;
@@ -445,7 +446,7 @@ double SuccessionDriver::calcProduction(int year)
 	double ln_ppt = log(ppt);
 
 	double rawProduction = -5.2058235 + (ln_ppt * 0.1088213) + (ln_ndvi * 1.386304);
-	ap->rawProduction = rawProduction;
+	ap->rawProduction = exp(rawProduction) * SMEAR;
 
 	// Modify NDVI and PPT as a function of NOT SHRUB cover
 	double adjust = 1 - (ap->SHRUBCOVER() / 100);
