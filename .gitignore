@@ -156,3 +156,9 @@ database.txt
 demo_test_out/
 kyle_points/
 outputs_to_rasters.ipynb
+# Tutorial data
+!docs/data/*.db
+
+# Codespaces option (not published)
+.devcontainer/
+docs/codespaces.md
