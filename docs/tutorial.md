@@ -8,7 +8,7 @@ The **Rangeland Vegetation Simulator (RVS)** projects shrub and herb growth, bio
 
 **Input**: SQLite db with plot herb height and % cover and each shrub species' height and % cover.
 
-**Output**: SQLite DB
+**Output**: SQLite DB of biomass and fuels
 
 This tutorial walks through the full workflow in four parts:
 
