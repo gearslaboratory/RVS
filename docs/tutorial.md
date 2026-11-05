@@ -32,23 +32,26 @@ This tutorial walks through the full workflow in four parts:
 
 ### Set up a tutorial folder
 
-1. Make a folder called `RVS_tutorial` somewhere easy to find, such as `C:\RVS_tutorial`. Avoid OneDrive or network folders as Docker works best with local folders.
-2. Inside it, make three folders: `inputs`, `out`, and `tools`.
-3. Download these files into `inputs`:
-   - [2026_template.db](data/2026_template.db) — a small test database (11 plots)
-   - [foothills_plots.csv](data/foothills_plots.csv) and [foothills_shrubs.csv](data/foothills_shrubs.csv) — plot and shrub data for a small landscape, used in Part 2
-   - [disturb_fire.csv](data/disturb_fire.csv) — a fire example for Part 4
-   - *Optional:* [foothills_demo.db](data/foothills_demo.db) — the finished Part 2 database, in case you want to skip ahead
-4. Download [make_raster.py](tools/make_raster.py) into `tools`.
+1. Download **[RVS_tutorial.zip](RVS_tutorial.zip)** (3 MB).
+2. Unzip it somewhere easy to find, such as `C:\RVS_tutorial`. Avoid OneDrive or network folders as Docker works best with local folders.
+   - **Windows:** right-click the zip, choose **Extract All…**, and pick `C:\`.
+   - **Mac:** double-click the zip, then move the `RVS_tutorial` folder where you want it.
 
-Your folder should look like this:
+The folder is ready to use:
 
 ```
 RVS_tutorial/
 ├────── inputs/    (.db and .csv files)
-├────── out/       (empty)
+├────── out/       (empty; results go here)
 └────── tools/     (make_raster.py)
 ```
+
+What's in `inputs`:
+
+- `2026_template.db` — a small test database (11 plots)
+- `foothills_plots.csv` and `foothills_shrubs.csv` — plot and shrub data for a small landscape, used in Part 2
+- `disturb_fire.csv` — a fire example for Part 4
+- `foothills_demo.db` — the finished Part 2 database, in case you want to skip ahead
 
 ### Open a terminal
 
