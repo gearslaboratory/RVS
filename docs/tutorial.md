@@ -199,7 +199,7 @@ RVS reads plot information from two tables in its input database:
 
 `PLOT_ID` links the two. To bring in your own data, you copy the test database, clear out the example plots, and import your plots and shrubs from CSV files.
 
-In this tutorial, "your own data" is a real landscape: 1,600 'plots', one per 30 m pixel, covering about 1 × 1.2 km of the Sierra Nevada foothills northeast of Fresno. Vegetation type and succession class come from LANDFIRE 2024. Most plots are blue oak savanna or chaparral, with a few riparian and sparsely vegetated pixels. The plots are in `foothills_plots.csv` and their shrubs are in `foothills_shrubs.csv`.
+In this tutorial, "your own data" is a real landscape: 1,600 'plots', one per 30 m pixel, covering about 1 × 1.2 km of the Sierra Nevada foothills northeast of Fresno. Vegetation type and succession class come from LANDFIRE 2024. Most plots are blue oak savanna or chaparral, with a few riparian and sparsely vegetated pixels. The plots are in `foothills_plots.csv` and their shrubs (all  are in `foothills_shrubs.csv`.
 
 ### Step 2.1: Make a copy of the test database
 
@@ -211,7 +211,7 @@ Open `foothills_plots.csv` and `foothills_shrubs.csv` in a text editor or Excel 
 
 **Plots_Active columns**
 
-| Column | What to enter |
+| Column | Description |
 |---|---|
 | `PLOT_ID` | Unique plot identifier |
 | `BPS_CODE` | LANDFIRE Biophysical Setting code, such as `11050` |
@@ -221,13 +221,13 @@ Open `foothills_plots.csv` and `foothills_shrubs.csv` in a text editor or Excel 
 | `herb_height` | Herb height, cm |
 | `latitude`, `longitude` | Decimal degrees (WGS84) |
 | `PPT_1` … `PPT_5` | Annual precipitation (mm) for a dry, mid-dry, normal, mid-wet, and wet year |
-| `NDVI_1` … `NDVI_5` | NDVI × 10,000 for the same five years (0.45 is entered as `4500`) |
+| `NDVI_1` … `NDVI_5` | NDVI × 10,000 for the same five years |
 | `NPP_1` … `NPP_5` | *Optional, in place of PPT and NDVI.* Net primary production for the same five years. If these columns exist, RVS uses them and ignores PPT and NDVI.  |
 | `sclass` | LANDFIRE succession class: `1`–`5` for classes A–E, `6` or `7` for uncharacteristic, `0` if unknown (RVS will estimate it from cover) |
 
 **Shrubs_Active columns**
 
-| Column | What to enter |
+| Column | Description |
 |---|---|
 | `PLOT_ID` | Must match a plot in Plots_Active |
 | `PLOT_NAME` | Any label |
@@ -264,7 +264,7 @@ Open `foothills_plots.csv` and `foothills_shrubs.csv` in a text editor or Excel 
 3. Click **OK**. When DB Browser says the table already exists and asks whether to import into it, click **Yes**.
 4. Repeat for `foothills_shrubs.csv`, with **Table name** set to `Shrubs_Active`.
 
-<!-- SCREENSHOT: DB Browser CSV import window with Table name = Plots_Active -->
+
 
 On the **Browse Data** tab, Plots_Active should now have 1,600 rows and Shrubs_Active 618.
 
@@ -394,7 +394,7 @@ RVS can apply **grazing** or **fire** to any plot in any year. Disturbances are 
 | `START_YEAR` | `3` | First year of disturbance (simulation starts at year 0) |
 | `STOP_YEAR` | `5` | Last year of disturbance|
 | `FREQ` | `1` | Repeat every year. `2` is every other year; `0` means once, in `START_YEAR` only. |
-| `P1_VAL` | `100` | Grazing: number of animals. Fire: intensity (recorded, not yet used). |
+| `P1_VAL` | `100` | Grazing: number of animals. Fire: intensity. |
 | `P2_VAL` | `20` | Grazing: pasture area, acres |
 | `P3_VAL` | `30` | Grazing: days grazed |
 
@@ -490,7 +490,7 @@ Add rows to **Disturbance_Plots** in your own database, either by importing a CS
 
 ## Troubleshooting
 
-| What you see | What to do |
+| Problem | What to do |
 |---|---|
 | `error during connect` or `Cannot connect to the Docker daemon` | Start Docker Desktop and wait until it says it's running. |
 | `unable to open database file` | Check you're in the `RVS_tutorial` folder and the file name and folder are spelled exactly. |
