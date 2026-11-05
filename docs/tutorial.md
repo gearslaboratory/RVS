@@ -2,7 +2,7 @@
 permalink: /
 ---
 
-# Running RVS: a hands-on tutorial
+# RVS: a hands-on tutorial for the Rangeland Vegetation Simulator
 
 The **Rangeland Vegetation Simulator (RVS)** projects shrub and herb growth, biomass, and carbon on rangeland plots, year by year.
 
